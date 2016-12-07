@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@srrs.app',
             'password' => bcrypt('admin1'),
             'created_at' => gmdate('Y-m-d H:i:s'),
-            'updated_at' => gmdate('Y-m-d H:i:s')
+            'updated_at' => gmdate('.Y-m-d H:i:s')
           ]
         ];
 

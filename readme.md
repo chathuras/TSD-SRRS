@@ -32,6 +32,12 @@ vagrant ssh
 cd tsd-srrs
 composer install
 ```
+* Setting Up DB
+(Note: this will delete all existing data and recreate tables 
+with random sample data)
+```
+php artisan migrate:refresh --seed
+```
 
 * visit below link on the browser
 ```
@@ -39,3 +45,9 @@ http://srrs.app/
 ```
 
 * if all good you should see the site running
+
+* Sample login details for the user login
+```
+E-Mail Address: admin@srrs.app
+Password: admin1
+```
