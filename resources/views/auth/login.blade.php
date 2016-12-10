@@ -5,26 +5,43 @@
         <form id="loginform" class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}
 
-            <div class="control-group">
+            <div class="control-group{{--$errors->has('email') ? ' has-error' : ''--}}">
                 <div class="controls">
                     <div class="main_input_box">
-                        <span class="add-on bg_lg"><i class="fa fa-user icon-user"> </i></span><input id="email" type="text"
-                                                                                                      placeholder="Username"/>
+                        <span class="add-on bg_lg"><i class="fa fa-user icon-user"> </i></span>
+                        <input id="email"
+                               type="email"
+                               name="email"
+                               value="{{ old('email') }}"
+                               placeholder=" Username"/>
+                        {{--@if ($errors->has('email'))--}}
+                            {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('email') }}</strong>--}}
+                                    {{--</span>--}}
+                        {{--@endif--}}
                     </div>
                 </div>
             </div>
-            <div class="control-group">
+            <div class="control-group{{--$errors->has('password') ? ' has-error' : ''--}}">
                 <div class="controls">
                     <div class="main_input_box">
-                        <span class="add-on bg_ly"><i class="fa fa-lock icon-lock"></i></span><input type="password"
-                                                                                                     placeholder="Password"/>
+                        <span class="add-on bg_ly"><i class="fa fa-lock icon-lock"></i></span>
+                        <input id="password" type="password" name="password" placeholder="Password"/>
+                        {{--@if ($errors->has('password'))--}}
+                            {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
+                                    {{--</span>--}}
+                        {{--@endif--}}
                     </div>
                 </div>
             </div>
             <div class="form-actions">
                 <span class="pull-left"><a href="#" class="flip-link btn btn-info"
                                            id="to-recover">Lost password?</a></span>
-                <span class="pull-right"><a type="submit" href="index.html" class="btn btn-success"/> Login</a></span>
+                <span class="pull-right">
+                    {{--<a type="submit" href="index.html" class="btn btn-success"> Login</a>--}}
+                    <button type="submit" class="btn btn-success">Login</button>
+                </span>
             </div>
         </form>
 
@@ -41,7 +58,7 @@
 
             <div class="form-actions">
                 <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Back to login</a></span>
-                <span class="pull-right"><a class="btn btn-info"/>Reecover</a></span>
+                <span class="pull-right"><a class="btn btn-info">Reecover</a></span>
             </div>
         </form>
     </div>

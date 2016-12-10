@@ -53,3 +53,16 @@ http://srrs.app/
 E-Mail Address: admin@srrs.app
 Password: admin1
 ```
+
+
+```apacheconfig
+<VirtualHost *:80>
+	DocumentRoot "C:\xampp\htdocs\chathura\TSD-SRRS"
+		ServerName srrs.app
+	<Directory "C:\xampp\htdocs\chathura\TSD-SRRS">
+		Order allow,deny
+		Allow from all
+</Directory>
+</VirtualHost>
+```
+    
