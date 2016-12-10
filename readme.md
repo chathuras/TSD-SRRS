@@ -18,7 +18,7 @@ cd TSD-SRRS
 
 * Open Homestead.yml and edit below to match the project path in your machine
 ```
-map: "/Users/chathura/PhpstormProjects/TSD-SRRS"
+map: "/Users/chathura/Projects/TSD-SRRS"
 ```
 * Add below entry to the host file
 ```
