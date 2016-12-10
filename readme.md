@@ -31,6 +31,8 @@ vagrant up
 vagrant ssh
 cd tsd-srrs
 composer install
+npm install
+gulp
 ```
 * Setting Up DB
 (Note: this will delete all existing data and recreate tables 
