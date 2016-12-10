@@ -57,9 +57,9 @@ Password: admin1
 
 ```apacheconfig
 <VirtualHost *:80>
-	DocumentRoot "C:\xampp\htdocs\chathura\TSD-SRRS"
+	DocumentRoot "C:\xampp\htdocs\TSD-SRRS\public"
 		ServerName srrs.app
-	<Directory "C:\xampp\htdocs\chathura\TSD-SRRS">
+	<Directory "C:\xampp\htdocs\TSD-SRRS\public">
 		Order allow,deny
 		Allow from all
 </Directory>
