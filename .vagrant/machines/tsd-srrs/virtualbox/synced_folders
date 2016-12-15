@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/tsd-srrs":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/tsd-srrs","hostpath":"/Users/chathura/PhpstormProjects/TSD-SRRS","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/chathura/PhpstormProjects/TSD-SRRS","disabled":false,"__vagrantfile":true}}}

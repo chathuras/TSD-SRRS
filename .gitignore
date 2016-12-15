@@ -7,3 +7,4 @@ public/css/
 public/font/
 public/js/
 vendor/
+.vagrant/

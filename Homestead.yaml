@@ -7,12 +7,17 @@ name: tsd-srrs
 provider: virtualbox
 
 folders:
-    - map: "/Users/chathura/Projects/TSD-SRRS"
+    - map: "/Users/chathura/PhpstormProjects/TSD-SRRS"
       to: "/home/vagrant/tsd-srrs"
 
 sites:
     - map: srrs.app
       to: "/home/vagrant/tsd-srrs/public"
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
 
 databases:
     - tsd-srrs
