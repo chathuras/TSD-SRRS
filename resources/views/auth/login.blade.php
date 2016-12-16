@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="/css/login.css" />
+@endsection
+
 @section('content')
     <div id="loginbox">
         <form id="loginform" class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
@@ -63,4 +67,8 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('js')
+    <script src="/js/login.js"></script>
 @endsection

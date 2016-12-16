@@ -4,6 +4,7 @@ Homestead.json
 .env
 .idea/
 public/css/
+!public/css/base.css
 public/font/
 public/js/
 vendor/
