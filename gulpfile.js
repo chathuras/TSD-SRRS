@@ -14,12 +14,20 @@ var elixir = require('laravel-elixir');
 if (elixir.config.production) {
   elixir(function (mix) {
     mix.styles('common/*.css', 'public/css/base.css');
-    // mix.styles('matrix-login.css', 'public/css/login.css');
+    mix.styles('matrix-login.css', 'public/css/login.css');
+    mix.styles([
+        'dashboard/fullcalendar.css',
+        'dashboard/matrix-style.css',
+        'dashboard/matrix-media.css',
+        'dashboard/jquery.gritter.css',
+        'dashboard/google-fonts.css'
+      ],
+      'public/css/dashboard.css');
   });
 
   elixir(function (mix) {
     mix.scripts('common/*.js', 'public/js/base.js');
-    // mix.scripts('matrix.login.js', 'public/js/login.js');
+    mix.scripts('matrix.login.js', 'public/js/login.js');
   });
 
   elixir(function (mix) {
@@ -28,10 +36,18 @@ if (elixir.config.production) {
 }
 
 elixir(function (mix) {
-  mix.styles('matrix-login.css', 'public/css/login.css');
+  // mix.styles('matrix-login.css', 'public/css/login.css');
+  // mix.styles([
+  //     'dashboard/fullcalendar.css',
+  //     'dashboard/matrix-style.css',
+  //     'dashboard/matrix-media.css',
+  //     'dashboard/jquery.gritter.css',
+  //     'dashboard/google-fonts.css'
+  //   ],
+  //   'public/css/dashboard.css');
 });
 
 elixir(function (mix) {
-  mix.scripts('matrix.login.js', 'public/js/login.js');
+  // mix.scripts('matrix.login.js', 'public/js/login.js');
 });
 
