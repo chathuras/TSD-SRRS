@@ -26,16 +26,21 @@ if (elixir.config.production) {
   });
 
   elixir(function (mix) {
-    mix.scripts('common/*.js', 'public/js/base.js');
+    mix.scripts('common/jquery.min.js', 'public/js/jquery.js');
+    mix.scripts('common/jquery.plugins/*.js', 'public/js/jquery.plugins.js');
     mix.scripts('matrix.login.js', 'public/js/login.js');
+    mix.scripts(
+      'dashboard/*.js', 'public/js/dashboard.js');
   });
 
   elixir(function (mix) {
     mix.copy('resources/assets/fonts', 'public/font/');
+    mix.copy('resources/assets/images', 'public/img/');
   });
 }
 
 elixir(function (mix) {
+  // mix.styles('common/*.css', 'public/css/base.css');
   // mix.styles('matrix-login.css', 'public/css/login.css');
   // mix.styles([
   //     'dashboard/fullcalendar.css',
@@ -48,6 +53,9 @@ elixir(function (mix) {
 });
 
 elixir(function (mix) {
+  // mix.scripts('common/jquery.min.js', 'public/js/jquery.js');
+  // mix.scripts('common/jquery.plugins/*.js', 'public/js/jquery.plugins.js');
   // mix.scripts('matrix.login.js', 'public/js/login.js');
+  // mix.scripts(
+  //   'dashboard/*.js', 'public/js/dashboard.js');
 });
-

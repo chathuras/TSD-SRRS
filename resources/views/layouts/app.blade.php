@@ -11,7 +11,7 @@
 <body>
 @yield('content')
 
-<script src="/js/base.js"></script>
+<script src="/js/jquery.js"></script>
 @yield('js')
 </body>
 
