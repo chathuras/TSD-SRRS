@@ -143,22 +143,24 @@
                     </ul>
                 </div>
             </div>
+        </div>
             <!--End-Action boxes-->
 
-            <hr/>
+        <hr/>
 
-            <!--end-main-container-part-->
+        <!--end-main-container-part-->
 
-            <!--Footer-part-->
+        <!--Footer-part-->
 
-            <div class="row-fluid">
-                <div id="footer" class="span12">&copy; {{date('Y')}} Resource Reservation System</div>
-            </div>
+        <div class="row-fluid">
+            <div id="footer" class="span12">&copy; {{date('Y')}} Resource Reservation System</div>
+        </div>
+    </div>
 
             <!--end-Footer-part-->
             @endsection
 @section('js')
 
-                {{--<script src="/js/jquery.plugins.js"></script>--}}
+                <script src="/js/jquery.plugins.js"></script>
                 <script src="/js/dashboard.js"></script>
 @endsection
