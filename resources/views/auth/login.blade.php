@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/login.css" />
 @endsection
 
-@section('content')
+@section('body')
     <div id="loginbox">
         <form id="loginform" class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}

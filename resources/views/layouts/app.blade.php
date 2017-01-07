@@ -9,7 +9,7 @@
     @yield('css')
 </head>
 <body>
-@yield('content')
+@yield('body')
 
 <script src="/js/jquery.js"></script>
 @yield('js')

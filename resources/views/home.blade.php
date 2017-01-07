@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/dashboard.css"/>
 @endsection
 
-@section('content')
+@section('body')
 
     <!--Header-part-->
     <div id="header">
@@ -52,8 +52,8 @@
             <li class="submenu">
                 <a href="#"><i class="icon icon-home"></i> <span>Resource Management</span></a>
                 <ul>
-                    <li><a href="resource_create.html">Resources</a></li>
-                    <li><a href="resource_categories.html">Categories</a></li>
+                    <li><a href="/resource">Resources</a></li>
+                    <li><a href="/category">Categories</a></li>
                 </ul>
             </li>
             <li class="submenu">
@@ -80,71 +80,72 @@
         <!--End-breadcrumbs-->
 
         <!--Action boxes-->
-        <div class="container-fluid">
-            <div class="span12">
-                <div class="quick-actions_homepage">
-                    <ul class="quick-actions">
-                        <li class="bg_lb span3">
-                            <div class="metro-nav-block nav-block-blue">
-                                <a data-original-title="" href="#">
-                                    <i class="icon-eye-open"></i>
-                                    <div class="info">+897</div>
-                                    <div class="status">Unique Visitor</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="bg_lb span3">
-                            <div class="metro-nav-block nav-block-blue">
-                                <a data-original-title="" href="#">
-                                    <i class="icon-eye-open"></i>
-                                    <div class="info">+897</div>
-                                    <div class="status">Unique Visitor</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="bg_lb span3">
-                            <div class="metro-nav-block nav-block-blue">
-                                <a data-original-title="" href="#">
-                                    <i class="icon-eye-open"></i>
-                                    <div class="info">+897</div>
-                                    <div class="status">Unique Visitor</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="bg_lb span3">
-                            <div class="metro-nav-block nav-block-blue">
-                                <a data-original-title="" href="#">
-                                    <i class="icon-eye-open"></i>
-                                    <div class="info">+897</div>
-                                    <div class="status">Unique Visitor</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="bg_lb span3">
-                            <div class="metro-nav-block nav-block-blue">
-                                <a data-original-title="" href="#">
-                                    <i class="icon-eye-open"></i>
-                                    <div class="info">+897</div>
-                                    <div class="status">Unique Visitor</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="bg_lb span3">
-                            <div class="metro-nav-block nav-block-blue">
-                                <a data-original-title="" href="#">
-                                    <i class="icon-eye-open"></i>
-                                    <div class="info">+897</div>
-                                    <div class="status">Unique Visitor</div>
-                                </a>
-                            </div>
-                        </li>
+        {{--<div class="container-fluid">--}}
+            {{--<div class="span12">--}}
+                {{--<div class="quick-actions_homepage">--}}
+                    {{--<ul class="quick-actions">--}}
+                        {{--<li class="bg_lb span3">--}}
+                            {{--<div class="metro-nav-block nav-block-blue">--}}
+                                {{--<a data-original-title="" href="#">--}}
+                                    {{--<i class="icon-eye-open"></i>--}}
+                                    {{--<div class="info">+897</div>--}}
+                                    {{--<div class="status">Unique Visitor</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li class="bg_lb span3">--}}
+                            {{--<div class="metro-nav-block nav-block-blue">--}}
+                                {{--<a data-original-title="" href="#">--}}
+                                    {{--<i class="icon-eye-open"></i>--}}
+                                    {{--<div class="info">+897</div>--}}
+                                    {{--<div class="status">Unique Visitor</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li class="bg_lb span3">--}}
+                            {{--<div class="metro-nav-block nav-block-blue">--}}
+                                {{--<a data-original-title="" href="#">--}}
+                                    {{--<i class="icon-eye-open"></i>--}}
+                                    {{--<div class="info">+897</div>--}}
+                                    {{--<div class="status">Unique Visitor</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li class="bg_lb span3">--}}
+                            {{--<div class="metro-nav-block nav-block-blue">--}}
+                                {{--<a data-original-title="" href="#">--}}
+                                    {{--<i class="icon-eye-open"></i>--}}
+                                    {{--<div class="info">+897</div>--}}
+                                    {{--<div class="status">Unique Visitor</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li class="bg_lb span3">--}}
+                            {{--<div class="metro-nav-block nav-block-blue">--}}
+                                {{--<a data-original-title="" href="#">--}}
+                                    {{--<i class="icon-eye-open"></i>--}}
+                                    {{--<div class="info">+897</div>--}}
+                                    {{--<div class="status">Unique Visitor</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li class="bg_lb span3">--}}
+                            {{--<div class="metro-nav-block nav-block-blue">--}}
+                                {{--<a data-original-title="" href="#">--}}
+                                    {{--<i class="icon-eye-open"></i>--}}
+                                    {{--<div class="info">+897</div>--}}
+                                    {{--<div class="status">Unique Visitor</div>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
 
 
-                    </ul>
-                </div>
-            </div>
-        </div>
-            <!--End-Action boxes-->
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        @yield('content')
+        <!--End-Action boxes-->
 
         <hr/>
 
@@ -157,10 +158,10 @@
         </div>
     </div>
 
-            <!--end-Footer-part-->
-            @endsection
-@section('js')
+    <!--end-Footer-part-->
+@endsection
 
-                <script src="/js/jquery.plugins.js"></script>
-                <script src="/js/dashboard.js"></script>
+@section('js')
+    <script src="/js/jquery.plugins.js"></script>
+    <script src="/js/dashboard.js"></script>
 @endsection

@@ -22,3 +22,6 @@ $this->get('logout', 'Auth\AuthController@logout');
 $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 $this->post('password/reset', 'Auth\PasswordController@reset');
+
+Route::resource('resource', 'ResourceController');
+Route::resource('category', 'CategoryController');
