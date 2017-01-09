@@ -31,6 +31,8 @@ if (elixir.config.production) {
     mix.scripts('matrix.login.js', 'public/js/login.js');
     // mix.scripts('dashboard/*.js', 'public/js/dashboard.js');
     mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
+    mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
+    mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
   });
 
   elixir(function (mix) {
@@ -57,4 +59,5 @@ elixir(function (mix) {
   // mix.scripts('common/jquery.plugins/*.js', 'public/js/jquery.plugins.js');
   // mix.scripts('matrix.login.js', 'public/js/login.js');
   // mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
+  mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
 });

@@ -9,6 +9,14 @@ use App\Http\Requests;
 class ResourceController extends Controller
 {
     /**
+     * ResourceController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

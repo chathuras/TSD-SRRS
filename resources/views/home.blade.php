@@ -53,7 +53,7 @@
                 <a href="#"><i class="icon icon-home"></i> <span>Resource Management</span></a>
                 <ul>
                     <li><a href="/resource">Resources</a></li>
-                    <li><a href="/category">Categories</a></li>
+                    <li><a href="/category/create/">Categories</a></li>
                 </ul>
             </li>
             <li class="submenu">
@@ -164,4 +164,5 @@
 @section('js')
     <script src="/js/jquery.plugins.js"></script>
     <script src="/js/dashboard.js"></script>
+    @yield('js-extra')
 @endsection

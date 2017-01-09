@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+});
+$(document).ready(function () {
   var getCategories = function() {
     $.get('/category', function (response) {
       $('#iTbodyCategories').html(response);
@@ -22,3 +29,4 @@ $(document).ready(function () {
 
 
 });
+//# sourceMappingURL=category.js.map
