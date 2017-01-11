@@ -1,5 +1,5 @@
 @foreach( $categories as $category)
-    <tr class="gradeX">
+    <tr class="gradeA">
         <td>{{ $category->name }}</td>
         <td>{{ $category->description }}</td>
         <td></td>

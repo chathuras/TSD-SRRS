@@ -87,4 +87,6 @@
 
 @section('js-extra')
     <script src="/js/category.js"></script>
+    {{--<script src="js/jquery.dataTables.min.js"></script>--}}
+    {{--<script src="js/matrix.tables.js"></script>--}}
 @endsection

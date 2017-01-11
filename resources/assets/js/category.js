@@ -2,10 +2,16 @@ $(document).ready(function () {
   var getCategories = function() {
     $.get('/category', function (response) {
       $('#iTbodyCategories').html(response);
+
+      $('.data-table').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "sDom": '<""l>t<"F"fp>'
+      });
+
     });
   };
 
-  console.log('test');
   getCategories();
   $('#iFormCategory').submit(function (event) {
     // TODO add $.blockui

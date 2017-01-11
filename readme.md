@@ -19,7 +19,22 @@ copy .env.example .env
 ```
 
 * Create an empty database on MySql via phpMyAdmin
+
+```
+Example:
+mysql> CREATE DATABASE `tsd-srrs`;
+```
+
 * Update database credentials on .env file
+```
+Example:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tsd-srrs
+DB_USERNAME=homestead
+DB_PASSWORD=
+```
 
 * Execute below on command prompt to set up DB tables
 (Note: this will delete all existing data and recreate tables 
