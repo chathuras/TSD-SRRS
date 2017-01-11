@@ -60,4 +60,5 @@ elixir(function (mix) {
   // mix.scripts('matrix.login.js', 'public/js/login.js');
   // mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
   mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
+  mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
 });

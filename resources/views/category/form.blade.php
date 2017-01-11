@@ -1,6 +1,5 @@
 <form class="form-horizontal" method="post" action="#" name="basic_validate" id="iFormCategory"
       novalidate="novalidate">
-    {{ method_field('PUT') }}
     <div class="span5">
         <div class="control-group">
             <label class="control-label">Resource Category</label>

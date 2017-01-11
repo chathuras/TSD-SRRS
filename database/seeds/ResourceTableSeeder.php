@@ -1,10 +1,10 @@
 <?php
 
-use App\Category;
+use App\Resources;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class CategoryTableSeeder extends Seeder
+class ResourceTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,19 +16,21 @@ class CategoryTableSeeder extends Seeder
         $faker = Factory::create();
 
         Schema::disableForeignKeyConstraints();
-        Category::truncate();
+        Resources::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $categories = [];
+        $resources = [];
 
         for ($i = 0; $i < 10; $i++) {
-            array_push($categories, [
+            array_push($resources, [
               'name' => ucfirst($faker->word),
+              'id_category' => $faker->numberBetween(1, 10),
+              'location' => $faker->sentence(2),
               'description' => $faker->sentence(6),
               'created_at' => gmdate('Y-m-d H:i:s'),
               'updated_at' => gmdate('Y-m-d H:i:s')
             ]);
         }
-        Category::insert($categories);
+        Resources::insert($resources);
     }
 }

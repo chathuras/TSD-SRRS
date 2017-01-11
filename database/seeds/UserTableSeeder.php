@@ -15,7 +15,10 @@ class UserTableSeeder extends Seeder
     {
         $faker = Factory::create();
 
+        Schema::disableForeignKeyConstraints();
         User::truncate();
+        Schema::enableForeignKeyConstraints();
+
         $users = [
           [
             'name' => $faker->name,

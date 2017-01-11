@@ -52,7 +52,7 @@
             <li class="submenu">
                 <a href="#"><i class="icon icon-home"></i> <span>Resource Management</span></a>
                 <ul>
-                    <li><a href="/resource">Resources</a></li>
+                    <li><a href="/resource/create/">Resources</a></li>
                     <li><a href="/category/create/">Categories</a></li>
                 </ul>
             </li>

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Resources;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class ResourceController extends Controller
 {
@@ -23,7 +22,16 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        return view('resource.index');
+        return view('resource.row',
+          [
+            'resources' => Resources::all([
+              'id',
+              'id_category',
+              'name',
+              'location',
+              'description'
+            ])
+          ]);
     }
 
     /**
@@ -33,24 +41,30 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('resource.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $resource = new Resources();
+        $resource->name = $request->name;
+        $resource->id_category = (int) $request->id_category;
+        $resource->location = $request->location;
+        $resource->description = $request->description;
+
+        return json_encode($resource->save());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -61,30 +75,37 @@ class ResourceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        return view('resource.form',
+          ['resource' => Resources::where('id', $id)->first()]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $resource = Resources::where('id', $id)->first();
+        $resource->name = $request->name;
+        $resource->id_category = (int) $request->id_category;
+        $resource->location = $request->location;
+        $resource->description = $request->description;
+
+        return json_encode($resource->save());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
