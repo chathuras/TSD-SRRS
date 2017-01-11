@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
         Category::truncate();
         $categories = [];
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 300; $i++) {
             array_push($categories, [
               'name' => ucfirst($faker->word),
               'description' => $faker->sentence(6),

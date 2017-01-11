@@ -23,7 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category.row', ['categories' => Category::all()]);
+        return view('category.row',
+          ['categories' => Category::all(['id', 'name', 'description'])]);
     }
 
     /**
@@ -70,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('category.form',
+          ['category' => Category::where('id', $id)->first()]);
     }
 
     /**
@@ -82,7 +84,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::where('id', $id)->first();
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+        return json_encode($category->save());
     }
 
     /**
