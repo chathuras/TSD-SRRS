@@ -10,8 +10,8 @@
         <div class="control-group">
             <label class="control-label">Resource Category</label>
             <div class="controls">
-                <input type="text" id="iInputCategory" placeholder="Resource Category"
-                       value="{{$resource->id_category or ''}}">
+                @include('resource.select-categories')
+                <input type="hidden" id="iInputCategoryId" value="{{$resource->category->id or null}}">
             </div>
         </div>
         <div class="control-group">

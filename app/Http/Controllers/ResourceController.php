@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Resources;
 use Illuminate\Http\Request;
 
@@ -24,13 +25,7 @@ class ResourceController extends Controller
     {
         return view('resource.row',
           [
-            'resources' => Resources::all([
-              'id',
-              'id_category',
-              'name',
-              'location',
-              'description'
-            ])
+            'resources' => Resources::with('category')->get()
           ]);
     }
 
@@ -41,7 +36,8 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        return view('resource.create');
+        $categories = Category::all('id', 'name');
+        return view('resource.create', ['categories' => $categories]);
     }
 
     /**
@@ -52,9 +48,10 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
+        $category = Category::where('id', (int)$request->category_id)->first();
         $resource = new Resources();
+        $resource->category()->associate($category);
         $resource->name = $request->name;
-        $resource->id_category = (int) $request->id_category;
         $resource->location = $request->location;
         $resource->description = $request->description;
 
@@ -80,8 +77,12 @@ class ResourceController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all('id', 'name');
         return view('resource.form',
-          ['resource' => Resources::where('id', $id)->first()]);
+          [
+            'resource' => Resources::where('id', $id)->first(),
+            'categories' => $categories
+          ]);
     }
 
     /**
@@ -95,7 +96,7 @@ class ResourceController extends Controller
     {
         $resource = Resources::where('id', $id)->first();
         $resource->name = $request->name;
-        $resource->id_category = (int) $request->id_category;
+        $resource->category_id = (int)$request->category_id;
         $resource->location = $request->location;
         $resource->description = $request->description;
 

@@ -24,7 +24,7 @@ class ResourceTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             array_push($resources, [
               'name' => ucfirst($faker->word),
-              'id_category' => $faker->numberBetween(1, 10),
+              'category_id' => $faker->numberBetween(1, 10),
               'location' => $faker->sentence(2),
               'description' => $faker->sentence(6),
               'created_at' => gmdate('Y-m-d H:i:s'),

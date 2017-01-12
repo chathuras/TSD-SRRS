@@ -13,7 +13,8 @@ $(document).ready(function () {
 
         $.get('/resource/' + id + '/edit', function (response) {
           $('#iDivResourceForm').html(response);
-          bindUpdateFormSubmit(id);
+          bindUpdateSubmit(id);
+          bindCategorySelect();
         });
       });
     });
@@ -25,7 +26,7 @@ $(document).ready(function () {
       event.preventDefault();
       var resource = {
         name: $('#iInputName').val(),
-        id_category: $('#iInputCategory').val(),
+        category_id: $('#iInputCategoryId').val(),
         location: $('#iInputLocation').val(),
         description: $('#iInputDescription').val()
       };
@@ -36,15 +37,17 @@ $(document).ready(function () {
     });
   };
 
-  var bindUpdateFormSubmit = function (id) {
+  var bindUpdateSubmit = function (id) {
     $('#iFormResource').submit(function (event) {
       // TODO add $.blockui
       event.preventDefault();
       var resource = {
-        _method: 'PUT', id: id, name: $('#iInputName').val(), id_category: $('#iInputCategory').val(),
+        _method: 'PUT', id: id, name: $('#iInputName').val(), category_id: $('#iInputCategoryId').val(),
         location: $('#iInputLocation').val(),
         description: $('#iInputDescription').val()
       };
+
+      console.log(resource);
 
       $.ajax({
         url: '/resource/' + id, type: 'PUT', data: resource, success: function (response) {
@@ -68,7 +71,15 @@ $(document).ready(function () {
     dataTable.dataTable().fnDestroy();
   };
 
+  var bindCategorySelect = function () {
+    $('#iSelectCategory').change(function () {
+      var categoryId = $(this).find('option:selected').val();
+      $('#iInputCategoryId').val(categoryId);
+    });
+  };
+
   getResources();
   bindStoreSubmit();
+  bindCategorySelect();
   initializeDataTable();
 });
