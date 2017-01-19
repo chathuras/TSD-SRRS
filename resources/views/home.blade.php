@@ -8,7 +8,7 @@
 
     <!--Header-part-->
     <div id="header">
-        <h1><a href="dashboard.html">SRRS Admin</a></h1>
+        <h1><a href="/">SRRS Admin</a></h1>
     </div>
     <!--close-Header-part-->
 
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="">
-                <a title="" href="/logout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a>
+                <a title="" href="/logout/"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a>
             </li>
         </ul>
     </div>
@@ -59,12 +59,12 @@
             <li class="submenu">
                 <a href="#"><i class="icon-calendar"></i> <span>Resource Reservation</span></a>
                 <ul>
-                    <li><a href="resource_cat_view.html">Resources</a></li>
-                    <li><a href="reservation.html">Reservations</a></li>
+                    <li><a href="/reservation/categories/">Resources</a></li>
+                    <li><a href="/reservation/index/">Reservations</a></li>
                 </ul>
             </li>
-            <li><a href="charts.html"><i class="icon icon-signal"></i> <span>Statistics</span></a></li>
-            <li><a href="manage_users.html"><i class="icon-user"></i> <span>User Management</span></a></li>
+            <li><a href="/reports/index/"><i class="icon icon-signal"></i> <span>Statistics</span></a></li>
+            <li><a href="/users/index/"><i class="icon-user"></i> <span>User Management</span></a></li>
         </ul>
     </div>
     <!--sidebar-menu-->
@@ -74,7 +74,7 @@
         <!--breadcrumbs-->
         <div id="content-header">
             <div id="breadcrumb">
-                <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Home</a>
+                <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>Home</a>
             </div>
         </div>
         <!--End-breadcrumbs-->

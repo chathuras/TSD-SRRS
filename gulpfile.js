@@ -33,6 +33,7 @@ if (elixir.config.production) {
     mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
     mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
     mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
+    mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');
   });
 
   elixir(function (mix) {
@@ -61,4 +62,5 @@ elixir(function (mix) {
   // mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
   mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
   mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
+  mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');
 });

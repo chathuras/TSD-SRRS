@@ -83,4 +83,8 @@ class ReservationController extends Controller
     {
         //
     }
+
+    public function categories() {
+        return view('reservation.categories');
+    }
 }
