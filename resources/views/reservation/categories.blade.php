@@ -5,60 +5,19 @@
         <div class="span12">
             <div class="quick-actions_homepage">
                 <ul class="quick-actions">
+                    @foreach( $categories as $category)
+                            {{--<td>{{ $category->name }}</td>--}}
+                            {{--<td>{{ $category->description }}</td>--}}
                     <li class="bg_lb span3">
                         <div class="metro-nav-block nav-block-blue">
-                            <a data-original-title="" href="reserve_resource.html">
+                            <a data-original-title="" href="/reservation/category/{{ $category->id }}">
                                 <i class="icon-eye-open"></i>
                                 <div class="info">+897</div>
-                                <div class="status">Courts</div>
+                                <div class="status">{{ $category->name }}</div>
                             </a>
                         </div>
                     </li>
-                    <li class="bg_lb span3">
-                        <div class="metro-nav-block nav-block-blue">
-                            <a data-original-title="" href="#">
-                                <i class="icon-eye-open"></i>
-                                <div class="info">+897</div>
-                                <div class="status">Sport Equipment</div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="bg_lb span3">
-                        <div class="metro-nav-block nav-block-blue">
-                            <a data-original-title="" href="#">
-                                <i class="icon-eye-open"></i>
-                                <div class="info">+897</div>
-                                <div class="status">Auditoriums</div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="bg_lb span3">
-                        <div class="metro-nav-block nav-block-blue">
-                            <a data-original-title="" href="#">
-                                <i class="icon-eye-open"></i>
-                                <div class="info">+897</div>
-                                <div class="status">Unique Visitor</div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="bg_lb span3">
-                        <div class="metro-nav-block nav-block-blue">
-                            <a data-original-title="" href="#">
-                                <i class="icon-eye-open"></i>
-                                <div class="info">+897</div>
-                                <div class="status">Unique Visitor</div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="bg_lb span3">
-                        <div class="metro-nav-block nav-block-blue">
-                            <a data-original-title="" href="#">
-                                <i class="icon-eye-open"></i>
-                                <div class="info">+897</div>
-                                <div class="status">Unique Visitor</div>
-                            </a>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
