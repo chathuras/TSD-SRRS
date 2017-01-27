@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Resources;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    /**
+     * ResourceController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -87,5 +97,13 @@ class ReservationController extends Controller
     {
         return view('reservation.categories',
           ['categories' => Category::all(['id', 'name', 'description'])]);
+    }
+
+    public function category($id)
+    {
+
+//        return view('reservation.resources');
+        return view('reservation.resources',
+          ['resources' => Resources::where('category_id', $id)->get()]);
     }
 }
