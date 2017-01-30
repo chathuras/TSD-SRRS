@@ -96,7 +96,7 @@ class ReservationController extends Controller
     public function categories()
     {
         return view('reservation.categories',
-          ['categories' => Category::all(['id', 'name', 'description'])]);
+          ['categories' => Category::all(['id', 'name', 'description', 'icon'])]);
     }
 
     public function category($id)

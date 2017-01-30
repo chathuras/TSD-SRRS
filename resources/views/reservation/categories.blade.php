@@ -11,7 +11,8 @@
                     <li class="bg_lb span3">
                         <div class="metro-nav-block nav-block-blue">
                             <a data-original-title="" href="/reservation/category/{{ $category->id }}">
-                                <i class="icon-eye-open"></i>
+                                <image src="/storage/{{ $category->icon }}">
+                                {{--<i class="icon-eye-open"></i>--}}
                                 <div class="info">+897</div>
                                 <div class="status">{{ $category->name }}</div>
                             </a>
