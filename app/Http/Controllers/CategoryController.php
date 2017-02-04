@@ -49,6 +49,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->icon = $request->icon;
+        $category->color = $request->color;
 
         return json_encode($category->save());
     }
@@ -88,6 +89,8 @@ class CategoryController extends Controller
         $category = Category::where('id', $id)->first();
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->icon = $request->icon;
+        $category->color = $request->color;
 
         return json_encode($category->save());
     }

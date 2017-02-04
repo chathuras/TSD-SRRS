@@ -6,7 +6,7 @@
             <div class="quick-actions_homepage">
                 <ul class="quick-actions">
                     @foreach( $categories as $category)
-                    <li class="bg_lb span3">
+                    <li class="bg_lb span3" style="background-color: {{ $category->color }};">
                         <div class="metro-nav-block nav-block-blue">
                             <a data-original-title="" href="/reservation/category/{{ $category->id }}">
                                 <image src="/storage/category/{{ $category->icon }}">

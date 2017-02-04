@@ -6,7 +6,8 @@
         <div class="control-group">
             <label class="control-label">Resource Category</label>
             <div class="controls">
-                <input type="text" id="iInputName" placeholder="Category Name" value="{{$category->name or ''}}"
+                <input name="name" type="text" id="iInputName" placeholder="Category Name"
+                       value="{{$category->name or ''}}"
                        required>
             </div>
         </div>
@@ -20,16 +21,9 @@
         <div class="control-group">
             <label class="control-label">Background Colour</label>
             <div class="controls">
-                <select>
-                    <option>First option</option>
-                    <option>Second option</option>
-                    <option>Third option</option>
-                    <option>Fourth option</option>
-                    <option>Fifth option</option>
-                    <option>Sixth option</option>
-                    <option>Seventh option</option>
-                    <option>Eighth option</option>
-                </select>
+                <input name="color" type="text" id="iInputColor" placeholder="Background Colour"
+                       value="{{$category->color or ''}}"
+                       required>
             </div>
         </div>
     </div>

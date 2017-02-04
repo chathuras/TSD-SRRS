@@ -27,6 +27,7 @@ class CategoryTableSeeder extends Seeder
               'description' => $faker->sentence(6),
               'icon' => $faker->image('public/storage/category', 640, 480,
                 'cats', false),
+              'color' => $faker->hexcolor,
               'created_at' => gmdate('Y-m-d H:i:s'),
               'updated_at' => gmdate('Y-m-d H:i:s')
             ]);

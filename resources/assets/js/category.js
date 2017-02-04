@@ -26,7 +26,8 @@ $(document).ready(function () {
         var category = {
           name: $('#iInputName').val(),
           description: $('#iTextDescription').val(),
-          icon: $('#iInputIcon').val()
+          icon: $('#iInputIcon').val(),
+          color: $('#iInputColor').val()
         };
 
         $.post("/category", category, function (response) {
@@ -57,6 +58,10 @@ $(document).ready(function () {
     $('#iBtnUpload').click(function () {
       $('#iInputIconFile').click();
     });
+  };
+
+  var bindColorInput = function () {
+    $("#iInputColor").colorpicker();
   };
 
   var bindUpdateFormSubmit = function (id) {
@@ -114,6 +119,7 @@ $(document).ready(function () {
 
   getCategories();
   bindStoreSubmit();
+  bindColorInput();
   bindBtnIconUpload();
   bindInputIconFile();
   initializeDataTable();
