@@ -25,7 +25,8 @@ class CategoryTableSeeder extends Seeder
             array_push($categories, [
               'name' => ucfirst($faker->word),
               'description' => $faker->sentence(6),
-              'icon' => $faker->image('public/storage', 640, 480, 'cats', false),
+              'icon' => $faker->image('public/storage/category', 640, 480,
+                'cats', false),
               'created_at' => gmdate('Y-m-d H:i:s'),
               'updated_at' => gmdate('Y-m-d H:i:s')
             ]);

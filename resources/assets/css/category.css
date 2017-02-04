@@ -1,3 +1,16 @@
-.btnUpload{
-  float: left;
+.error {
+  color: red;
+}
+
+.cHidden {
+  display: none;
+}
+
+input.cHidden {
+  display: none;
+}
+
+#imgIcon {
+  width: 200px;
+  height: 200px;
 }

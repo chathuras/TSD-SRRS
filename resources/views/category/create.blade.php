@@ -1,5 +1,9 @@
 @extends('home')
 
+@section('css-extra')
+    <link rel="stylesheet" href="/css/category.css"/>
+@endsection
+
 @section('content')
     <div class="row-fluid">
         <div class="span12">
