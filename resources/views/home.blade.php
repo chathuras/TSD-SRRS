@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/dashboard.css"/>
+    <link rel="stylesheet" href="/css/crud.css"/>
     @yield('css-extra')
 @endsection
 

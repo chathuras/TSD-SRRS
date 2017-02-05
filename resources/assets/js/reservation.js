@@ -180,6 +180,9 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
+    $('#iInputStartDate').datepicker();
+    $('#iInputEndDate').datepicker();
+
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();

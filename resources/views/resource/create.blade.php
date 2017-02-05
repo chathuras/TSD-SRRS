@@ -15,6 +15,7 @@
     <div class="widget-box">
         <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
             <h5>Resources</h5>
+            <a class="btn btn btn-success" href="/resource/create">Add</a>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
@@ -24,6 +25,7 @@
                     <th>Category</th>
                     <th>Location</th>
                     <th>Description</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody id="iTbodyResources"></tbody>
