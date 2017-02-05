@@ -6,6 +6,7 @@ use App\Category;
 use App\Resources;
 use App\Reservations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -49,7 +50,18 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $reservation = new Reservations();
+        $reservation -> resource_id = $request ->resource_id;
+        $reservation -> user_id = $user ->email;
+        $reservation -> name = $request ->name;
+        $reservation -> address = $request ->address;
+        $reservation -> nic_number = $request ->nic;
+        $reservation -> conact_number = $request ->contact_number;
+        $reservation -> email_address = $request ->email_address;
+        $reservation -> start = $request ->start;
+        $reservation -> end = $request ->end;
+        return json_encode($reservation -> save());
     }
 
     /**

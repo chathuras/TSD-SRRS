@@ -22,7 +22,7 @@
 								</div>
 								<label class="control-label">Address</label>
 								<div class="controls">
-								<textarea class="span11" ></textarea>
+								<textarea class="span11" id="iInputAddress"></textarea>
 								</div>
 								<label class="control-label">NIC number :</label>
 								<div class="controls">
@@ -38,15 +38,15 @@
 								</div>
 								<label class="control-label">Reservation Start Date :</label>
 								<div class="controls">
-								<input type="text" class="span11" placeholder="Reservation Start Date" id="iInoutStart"/>
+								<input type="text" class="span11" placeholder="Reservation Start Date" id="iInputStartDate"/>
 								</div>
 								<label class="control-label">Reservation End Date :</label>
 								<div class="controls">
-								<input type="text" class="span11" placeholder="Reservation End Date" id="iInputEnd"/>
+								<input type="text" class="span11" placeholder="Reservation End Date" id="iInputEndDate"/>
 								</div>
 								<div class="form-actions">
-									<button type="button" class="btn btn-success">Save</button>
-									<button type="reset" class="btn btn-success">Cancel</button>
+									<button type="button" class="btn btn-success" id="resSave">Save</button>
+									<button type="reset" class="btn btn-success" id="resReset">Cancel</button>
 								</div>
 							</form>
 						</div>
