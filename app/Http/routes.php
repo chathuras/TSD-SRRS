@@ -35,4 +35,5 @@ Route::get('reservation/index', 'ReservationController@index');
 Route::get('reservation/resources/category_id/{category_id}',
   'ReservationController@resources');
 Route::get('reservation/category/{id}', 'ReservationController@category');
+Route::get('reservation/resources/calendar/{resource_id}', 'ReservationController@calendar');
 Route::resource('reservation', 'ReservationController');

@@ -1,1 +1,17 @@
-.error{color:red}.cHidden,input.cHidden{display:none}#imgIcon{width:200px;height:200px}
+.error {
+  color: red;
+}
+
+.cHidden {
+  display: none;
+}
+
+input.cHidden {
+  display: none;
+}
+
+#imgIcon {
+  width: 200px;
+  height: 200px;
+}
+/*# sourceMappingURL=category.css.map */

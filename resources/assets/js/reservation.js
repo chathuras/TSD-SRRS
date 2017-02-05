@@ -89,7 +89,14 @@ $(document).ready(function () {
 
   var showReservationDialog = function (resourceId) {
     console.log('resourceId >> 0' + resourceId);
-    var dialogContent = '';
+      $.get('/reservation/resources/calendar/'+ resourceId, function (response) {
+
+          if (response) {
+            alert(response);
+              $('#resCalendar').html(response);
+          }
+      });
+    /*var dialogContent = '';
     console.log('resourceId >> 1' + resourceId);
     dialogContent += '<div class="modal-dialog" role="document">';
     dialogContent += '<div class="modal-content">';
@@ -142,8 +149,8 @@ $(document).ready(function () {
     dialogContent += '<span class="add-on"><i class="icon-th"></i></span> </div>';
     dialogContent += '</div>';
     dialogContent += '<div class="form-actions">';
-    dialogContent += '<button type="submit" class="btn btn-success">Save</button>';
-    dialogContent += '<button type="submit" class="btn btn-success">Cancel</button>';
+    dialogContent += '<button type="button" class="btn btn-success" id="resSave">Save</button>';
+    dialogContent += '<button type="reset" class="btn btn-success">Cancel</button>';
     dialogContent += '</div>';
     dialogContent += '</form>';
     dialogContent += '</div>';
@@ -157,16 +164,21 @@ $(document).ready(function () {
     dialogContent += '<div class="widget-content">';
     dialogContent += '<div id="calendar"></div>';
     dialogContent += '</div>';
+    dialogContent += '</div>';*/
+    /*dialogContent += '</div>';
     dialogContent += '</div>';
     dialogContent += '</div>';
     dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';
+    dialogContent += '</div>';*/
     console.log('resourceId >> 2' + resourceId);
-    $('#resCalendar').html(dialogContent);
+    //$('#resCalendar').html(calendarContent);
     $('#resCalendar').attr("class", "modal fade in");
     $('#resCalendar').attr("aria-hidden", "false");
+
+    $( "#resSave" ).click(function() {
+        alert( "Handler for .click() called." + $('#iInputName').val());
+        event.preventDefault();
+    });
 
     var date = new Date();
     var d = date.getDate();

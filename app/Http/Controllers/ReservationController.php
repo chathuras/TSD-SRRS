@@ -126,8 +126,14 @@ class ReservationController extends Controller
           ['resources' => Resources::where('category_id', $category_id)->get()]);
     }
 		
-		public function reservations()
+    public function reservations()
     {
         return view('reservation.reservations');
+    }
+
+    public function calendar($resource_id)
+    {
+        //return $resource_id;
+        return view('reservation.calendar', ['resource_id' => $resource_id]);
     }
 }
