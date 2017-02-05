@@ -1,10 +1,10 @@
 @extends('base')
 @section('css-extra')
-	<link href='/calendar/fullcalendar.min.css' rel='stylesheet' />
-	<link href='/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-	<script src='/calendar/moment.min.js'></script>
-	<script src='/calendar/jquery.min.js'></script>
-	<script src='/calendar/fullcalendar.min.js'></script>
+	{{--<link href='/calendar/fullcalendar.min.css' rel='stylesheet' />--}}
+	{{--<link href='/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />--}}
+	{{--<script src='/calendar/moment.min.js'></script>--}}
+	{{--<script src='/calendar/jquery.min.js'></script>--}}
+	{{--<script src='/calendar/fullcalendar.min.js'></script>--}}
 @endsection
 @section('content')
 	<form class="form-horizontal" method="post" action="#" name="resource_list" id="iListResource"
@@ -44,5 +44,6 @@
 @endsection	
 
 @section('js-extra')
+		<script src="/js/calendar.js"></script>
 		<script src="/js/reservation.js"></script>
 @endsection
