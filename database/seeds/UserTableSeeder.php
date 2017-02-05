@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+				$faker = Factory::create();
 
         Schema::disableForeignKeyConstraints();
         User::truncate();
@@ -24,6 +24,9 @@ class UserTableSeeder extends Seeder
             'name' => $faker->name,
             'email' => 'admin@srrs.app',
             'password' => bcrypt('admin1'),
+						'role' => 'admin',
+						'status' => '1',
+						'activation_key' => 'eewlepeqpepweleqwel',
             'created_at' => gmdate('Y-m-d H:i:s'),
             'updated_at' => gmdate('.Y-m-d H:i:s')
           ]
@@ -34,6 +37,9 @@ class UserTableSeeder extends Seeder
               'name' => $faker->name,
               'email' => $faker->email,
               'password' => bcrypt($faker->password),
+							'role' => 'operator',
+							'status' => '1',
+							'activation_key' => 'eewlepeqpepweleqwel', 
               'created_at' => gmdate('Y-m-d H:i:s'),
               'updated_at' => gmdate('Y-m-d H:i:s')
             ]);
