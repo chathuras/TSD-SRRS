@@ -87,6 +87,7 @@ class AuthController extends Controller
 		 		$faker = Factory::create();
 				$tokens = explode("-",$request->userId);
 				$table = "students";
+				$role = 'student';
 				switch ($tokens[0]) 
 				{
 						case "s":
@@ -95,14 +96,42 @@ class AuthController extends Controller
 						case "as":
 						case "nas":
 								$table = "staff";
+								$role = 'teacher';
 								break;
 				}
-				$requester = DB::select('select * from ' . $table .' where reg_id = ? and pin= ?;', [$request->input('userId'), $request->input('pinNumber')]);
-				//return view('auth.debug', $requester);
-				$user = new User();
+				$q = 'select * from ' . $table ." where reg_id = '?' and pin= ?;";
+				//$requester = DB::select($q, [$request->input('userId'), (int)$request->input('pinNumber')]);
+				//return $q . '  ' . (int)$request->input('pinNumber') . '  ' .$request->input('userId');
+				$requester = DB::table($table)->where([
+						['reg_id', '=', $request->input('userId')],
+						['pin', '=', (int)$request->input('pinNumber')],
+				])->get();
+				
+				if (sizeof($requester) > 0) {
+						$obj = $requester['0'];
+						$user = new User();
+						$user->name = $obj -> name; //$requester->name;
+						$user->email = $obj -> email_address;  //$requester->email_address;
+						$user->password = bcrypt($request->input('password'));
+						$user->role = $role;
+						$user->status = 2;
+						$user->activation_key = bcrypt($faker->word);
+						$user->save();
+						return view('auth.register');
+				} else {
+						return "a is smaller than b";
+				}
+				/* if ($size > 0) {
+						Obj = requester['0'],
+						var_dump(Obj);
+						die;
+						echo "a is bigger than b";
+				} else {
+						return 'not found'
+				}
+	 */
+				/* $user = new User();
         $user->name = 'chinthaka'; //$requester->name;
-        //$user->address = 'some place'; //$requester->address;
-        //$user->date_of_birth = gmdate('Y-m-d H:i:s'); //$requester->date_of_birth;
         $user->email = 'chinthaka@gmail.com'; //$requester->email_address;
         $user->password = bcrypt($request->input('password'));
         $user->role = 'student';
@@ -110,8 +139,7 @@ class AuthController extends Controller
         $user->activation_key = bcrypt($faker->word);
 				$user->save();
 
-        // return view('user.index', ['users' => $users]);
-				return view('auth.register');
+				return view('auth.register'); */
 		}
 		
 		public function changePassword() {
