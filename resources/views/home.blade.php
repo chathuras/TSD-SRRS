@@ -17,16 +17,15 @@
     <!--top-Header-menu-->
     <div id="user-nav" class="navbar navbar-inverse">
         <ul class="nav">
-            <li class="dropdown" id="profile-messages">
-                <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
-                    <i class="icon icon-user"></i> <span class="text">Welcome {{ Auth::user()->name }}</span>
-                    <b class="caret"></b>
+            <li class="">
+							<a title="" href="">
+                 <span class="text">Welcome {{ Auth::user()->name }}</span>
+							</a>	
+            </li>
+						 <li class="">
+                <a title="" href="/auth/passowrd/">
+                    <i class="icon icon-lock"></i> <span class="text">Change Password</span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="icon-key"></i> Change Password</a></li>
-                </ul>
             </li>
             <li class="">
                 <a title="" href="lock_screen.html">
@@ -61,7 +60,7 @@
                 <a href="#"><i class="icon-calendar"></i> <span>Resource Reservation</span></a>
                 <ul>
                     <li><a href="/reservation/categories/">Resources</a></li>
-                    <li><a href="/reservation/index/">Reservations</a></li>
+                    <li><a href="/reservation/reservations/">Reservations</a></li>
                 </ul>
             </li>
             <li><a href="/reports/index/"><i class="icon icon-signal"></i> <span>Statistics</span></a></li>

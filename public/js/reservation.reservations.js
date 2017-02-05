@@ -1,44 +1,46 @@
 $(document).ready(function () {
-	var getResources = function () {
+	var getReservations = function () {
 		//console.log(document.forms[0].elements['category_id'].value)
 		//var categoryId = document.forms[0].elements['category_id'].value;
-		$.get('/reservation/resources/category_id/' + document.forms[0].elements['category_id'].value, function (response) {
+		$.get('/reservation/index', function (response) {
 
 			if (response) {
 				destroyDataTable();
-				$('#iTbodyResources').html(response);
+				$('#iTbodyReservations').html(response);
 				initializeDataTable();
 			}
 
-			$('.cTrResource').click(function () {
+			$('.cTrReservation').click(function () {
 				var id = $(this).data('id');
-
-				$.get('/reservation/' + id + '/edit', function (response) {
-					$('#iDivResourceForm').html(response);
-					bindUpdateSubmit(id);
-					bindCategorySelect();
-				});
+				showReservationDialog(id);
 			});
 		});
 	};
   var bindStoreSubmit = function () {
-    $('#iFormResource').submit(function (event) {
+    console.log('SUBMIT EVENT');
+		//$('#iFormReservation').submit(function (event) {
+		//document.iFormReservation.iInputNIC
+		//var Nic = document.getElementById("iFormReservation").iInputNIC;
+		console.log('SUBMIT EVENT>> '+ $('#iInputName').val());
+		$('#iListResource').submit(function (event) {
+			 console.log('SUBMIT EVENT IN >>');
       // TODO add $.blockui
       event.preventDefault();
-      var resource = {
+     /*  var resource = {
         name: $('#iInputName').val(),
         category_id: $('#iInputCategoryId').val(),
         location: $('#iInputLocation').val(),
         description: $('#iInputDescription').val()
-      };
+      }; */
 
-      $.post("/reservation", resource, function (response) {
-        getResources();
-      });
+    //  $.post("/reservation", resource, function (response) {
+    //    getResources();
+    //  });
     });
   };
 
   var bindUpdateSubmit = function (id) {
+		console.log('UPDATE SUBMIT EVENT');
     $('#iFormResource').submit(function (event) {
       // TODO add $.blockui
       event.preventDefault();
@@ -79,7 +81,7 @@ $(document).ready(function () {
     });
   };
 
-  getResources();
+  getReservations();
   bindStoreSubmit();
   bindCategorySelect();
   initializeDataTable();

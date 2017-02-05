@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Resources;
+use App\Reservations;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -24,7 +25,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        return view('reservation.reservation-row',
+          [
+            'reservations' => Reservations::all(['id', 'resource_id', 'name', 'address', 'email_address', 'start', 'end'])
+          ]);
     }
 
     /**
@@ -104,6 +108,18 @@ class ReservationController extends Controller
 
 //        return view('reservation.resources');
         return view('reservation.resources',
-          ['resources' => Resources::where('category_id', $id)->get()]);
+          ['resources' => Resources::where('category_id', $id)->get(),
+					 'category_id' =>  $id]);
+    }
+		
+		public function resources($category_id)
+    {
+        return view('reservation.resources-row',
+          ['resources' => Resources::where('category_id', $category_id)->get()]);
+    }
+		
+		public function reservations()
+    {
+        return view('reservation.reservations');
     }
 }
