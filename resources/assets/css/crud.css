@@ -14,3 +14,7 @@ input.cHidden {
   width: 200px;
   height: 200px;
 }
+
+.datepicker {
+  z-index: 99999 !important;
+}

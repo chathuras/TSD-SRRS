@@ -165,8 +165,12 @@ $(document).ready(function () {
     dialogContent += '</div>';
     console.log('resourceId >> 2' + resourceId);
     $('#resCalendar').html(dialogContent);
+
     $('#resCalendar').attr("class", "modal fade in");
     $('#resCalendar').attr("aria-hidden", "false");
+
+    $('#iInputStartDate').datepicker();
+    $('#iInputEndDate').datepicker();
 
     var date = new Date();
     var d = date.getDate();

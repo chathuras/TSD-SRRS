@@ -1,4 +1,4 @@
-@extends('base')
+@extends('home')
 @section('css-extra')
 	{{--<link href='/calendar/fullcalendar.min.css' rel='stylesheet' />--}}
 	{{--<link href='/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />--}}
