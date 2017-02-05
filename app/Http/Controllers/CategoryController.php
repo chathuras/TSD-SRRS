@@ -48,6 +48,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->icon = $request->icon;
 
         return json_encode($category->save());
     }
@@ -100,5 +101,14 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function upload(Request $request)
+    {
+        $iconFileName = uniqid();
+        $iconFileName .= "." . $request->iconFile->guessExtension();
+        $request->iconFile->move('storage/category', $iconFileName);
+
+        return json_encode($iconFileName);
     }
 }

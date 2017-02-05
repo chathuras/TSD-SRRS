@@ -53,6 +53,7 @@ elixir(function (mix) {
   //     'dashboard/google-fonts.css'
   //   ],
   //   'public/css/dashboard.css');
+  mix.styles('category.css', 'public/css/category.css');
 });
 
 elixir(function (mix) {

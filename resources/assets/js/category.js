@@ -1,7 +1,6 @@
 $(document).ready(function () {
   var getCategories = function () {
     $.get('/category', function (response) {
-
       if (response) {
         destroyDataTable();
         $('#iTbodyCategories').html(response);
@@ -21,13 +20,42 @@ $(document).ready(function () {
 
   var bindStoreSubmit = function () {
     $('#iFormCategory').submit(function (event) {
-      // TODO add $.blockui
       event.preventDefault();
-      var category = {name: $('#iInputName').val(), description: $('#iTextDescription').val()};
+      // TODO add $.blockui
+      if ($('#iFormCategory').valid()) {
+        var category = {
+          name: $('#iInputName').val(),
+          description: $('#iTextDescription').val(),
+          icon: $('#iInputIcon').val()
+        };
 
-      $.post("/category", category, function (response) {
-        getCategories();
-      });
+        $.post("/category", category, function (response) {
+          if (response) {
+            $('#iDivSuccess').show('fast');
+            setTimeout(function () {
+              $('#iDivSuccess').hide('slow');
+            }, 1000);
+            getCategories();
+            $('#iFormCategory')[0].reset();
+          } else {
+            $('#iDivError').show('fast');
+            setTimeout(function () {
+              $('#iDivError').hide('slow');
+            }, 2000);
+          }
+        }).fail(function () {
+          $('#iDivError').show('fast');
+          setTimeout(function () {
+            $('#iDivError').hide('slow');
+          }, 2000);
+        });
+      }
+    });
+  };
+
+  var bindBtnIconUpload = function () {
+    $('#iBtnUpload').click(function () {
+      $('#iInputIconFile').click();
     });
   };
 
@@ -35,10 +63,16 @@ $(document).ready(function () {
     $('#iFormCategory').submit(function (event) {
       // TODO add $.blockui
       event.preventDefault();
-      var category = {_method: 'PUT', id: id, name: $('#iInputName').val(), description: $('#iTextDescription').val()};
+
+      var category = {
+        _method: 'PUT',
+        id: id,
+        name: $('#iInputName').val(),
+        description: $('#iTextDescription').val()
+      };
 
       $.ajax({
-        url: '/category/' + id, type: 'PUT', data: category, success: function (response) {
+        url: '/category/' + id, type: 'PUT', data: category, success: function () {
           getCategories();
         }
       });
@@ -59,7 +93,28 @@ $(document).ready(function () {
     dataTable.dataTable().fnDestroy();
   };
 
+  var bindInputIconFile = function () {
+    $('#iInputIconFile').on('change', function () {
+      $.ajax({
+        url: "/category/upload",
+        data: new FormData($('#iFormCategory')[0]),
+        dataType: 'json',
+        async: true,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          $('#iInputIconFileName').val($('#iInputIconFile')[0].files[0].name);
+          $('#iInputIcon').val(response);
+          $('#imgIcon').attr('src', '/storage/category/' + response);
+        }
+      });
+    });
+  };
+
   getCategories();
   bindStoreSubmit();
+  bindBtnIconUpload();
+  bindInputIconFile();
   initializeDataTable();
 });

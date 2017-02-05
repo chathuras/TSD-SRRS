@@ -25,6 +25,8 @@ $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 $this->post('password/reset', 'Auth\PasswordController@reset');
 
 Route::resource('resource', 'ResourceController');
+
+Route::post('category/upload', 'CategoryController@upload');
 Route::resource('category', 'CategoryController');
 
 Route::get('reservation/categories', 'ReservationController@categories');
@@ -33,5 +35,4 @@ Route::get('reservation/index', 'ReservationController@index');
 Route::get('reservation/resources/category_id/{category_id}',
   'ReservationController@resources');
 Route::get('reservation/category/{id}', 'ReservationController@category');
-
 Route::resource('reservation', 'ReservationController');
