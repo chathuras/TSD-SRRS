@@ -1,7 +1,5 @@
 @extends('layouts.min')
-@section('css-extra')
-		<link rel="stylesheet" href="/css/matrix-style.css" />
-@endsection
+
 @section('content')
 <div class="container-fluid">
 	<div class="span3"></div>
@@ -34,7 +32,4 @@
 	</div>
 	<div class="span3"></div>
 </div>	
-@endsection
-@section('js-extra')
-		<script src="/js/register.js"></script>
 @endsection

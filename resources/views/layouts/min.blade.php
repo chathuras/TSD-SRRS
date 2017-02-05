@@ -29,5 +29,5 @@
 @section('js')
     <script src="/js/jquery.plugins.js"></script>
     <script src="/js/dashboard.js"></script>
-    @yield('js-extra')
+		<script src="/js/register.js"></script>
 @endsection

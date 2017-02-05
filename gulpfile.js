@@ -17,7 +17,7 @@ if (elixir.config.production) {
     mix.styles('matrix-login.css', 'public/css/login.css');
     mix.styles([
         'dashboard/fullcalendar.css',
-        'dashboard/matrix-style.css',
+        'dashboard/matrix-style.css', // check
         'dashboard/matrix-media.css',
         'dashboard/jquery.gritter.css',
         'dashboard/google-fonts.css'
@@ -30,7 +30,9 @@ if (elixir.config.production) {
     mix.scripts('common/jquery.plugins/*.js', 'public/js/jquery.plugins.js');
     mix.scripts('matrix.login.js', 'public/js/login.js');
     // mix.scripts('dashboard/*.js', 'public/js/dashboard.js');
-    mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
+    mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js'); // matrix form validation, matrix tables should include if needed
+    mix.scripts('register.js', 'public/js/register.js');
+    mix.scripts('reservation.reservations.js', 'public/js/reservation.reservations.js');
     mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
     mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
     mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');
@@ -61,6 +63,7 @@ elixir(function (mix) {
   // mix.scripts('common/jquery.plugins/*.js', 'public/js/jquery.plugins.js');
   // mix.scripts('matrix.login.js', 'public/js/login.js');
   // mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js');
+  mix.scripts('register.js', 'public/js/register.js');
   mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
   mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
   mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');

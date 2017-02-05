@@ -1,6 +1,5 @@
 @extends('base')
 @section('css-extra')
-	<link rel="stylesheet" href="/css/datepicker.css" />
 	<link href='/calendar/fullcalendar.min.css' rel='stylesheet' />
 	<link href='/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='/calendar/moment.min.js'></script>
@@ -45,8 +44,5 @@
 @endsection	
 
 @section('js-extra')
-		<script src="/js/bootstrap-datepicker.js"></script> 
 		<script src="/js/reservation.js"></script>
-    {{--<script src="js/jquery.dataTables.min.js"></script>--}}
-    {{--<script src="js/matrix.tables.js"></script>--}}
 @endsection

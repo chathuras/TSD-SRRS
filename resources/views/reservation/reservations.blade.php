@@ -1,7 +1,4 @@
 @extends('home')
-@section('css-extra')
-	<link rel="stylesheet" href="/css/datepicker.css" />
-@endsection
 @section('content')
 	<form class="form-horizontal" method="post" action="#" name="reservation_list" id="iFormReservationList"
 				novalidate="novalidate">
@@ -40,8 +37,5 @@
 @endsection	
 
 @section('js-extra')
-		<script src="/js/bootstrap-datepicker.js"></script> 
 		<script src="/js/reservation.reservations.js"></script>
-    {{--<script src="js/jquery.dataTables.min.js"></script>--}}
-    {{--<script src="js/matrix.tables.js"></script>--}}
 @endsection
