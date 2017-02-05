@@ -28,6 +28,7 @@ if (elixir.config.production) {
   elixir(function (mix) {
     mix.scripts('common/jquery.min.js', 'public/js/jquery.js');
     mix.scripts('common/jquery.plugins/*.js', 'public/js/jquery.plugins.js');
+    mix.scripts(['moment.min.js', 'jquery.plugins.extra/fullcalendar.min.js'], 'public/js/calendar.js');
     mix.scripts('matrix.login.js', 'public/js/login.js');
     // mix.scripts('dashboard/*.js', 'public/js/dashboard.js');
     mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js'); // matrix form validation, matrix tables should include if needed
