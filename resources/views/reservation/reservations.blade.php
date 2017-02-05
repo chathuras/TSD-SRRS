@@ -1,35 +1,30 @@
-@extends('base')
+@extends('home')
 @section('css-extra')
 	<link rel="stylesheet" href="/css/datepicker.css" />
-	<link href='/calendar/fullcalendar.min.css' rel='stylesheet' />
-	<link href='/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-	<script src='/calendar/moment.min.js'></script>
-	<script src='/calendar/jquery.min.js'></script>
-	<script src='/calendar/fullcalendar.min.js'></script>
 @endsection
 @section('content')
-	<form class="form-horizontal" method="post" action="#" name="resource_list" id="iListResource"
+	<form class="form-horizontal" method="post" action="#" name="reservation_list" id="iFormReservationList"
 				novalidate="novalidate">
-		<input type="hidden" name="category_id" value="{{ $category_id }}">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
 					<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-						<h5>Available Resources</h5>
+						<h5>Current Reservations</h5>
 					</div>
 					<div class="widget-content nopadding">
 						<table class="table table-bordered data-table">
 								<thead>
 									<tr>
-										<th>ID</th>
 										<th>Name</th>
-										<th>Description</th>
-										<th>Location</th>
+										<th>Address</th>
+										<th>Email</th>
+										<th>Start</th>
+										<th>Enad</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
-								<tbody id="iTbodyResources"></tbody>
+								<tbody id="iTbodyReservations"></tbody>
 							</table>
 						
 						
@@ -46,7 +41,7 @@
 
 @section('js-extra')
 		<script src="/js/bootstrap-datepicker.js"></script> 
-		<script src="/js/reservation.js"></script>
+		<script src="/js/reservation.reservations.js"></script>
     {{--<script src="js/jquery.dataTables.min.js"></script>--}}
     {{--<script src="js/matrix.tables.js"></script>--}}
 @endsection

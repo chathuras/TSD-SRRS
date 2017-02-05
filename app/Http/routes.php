@@ -14,8 +14,11 @@
 Route::get('/', 'HomeController@index');
 
 // Authentication Routes...
+Route::get('auth/register', 'Auth\AuthController@register');
+Route::post('auth/register_user', 'Auth\AuthController@registerUser');
+Route::get('auth/password', 'Auth\AuthController@changePassword');
+Route::post('auth/change_password', 'Auth\AuthController@updatePassword');
 Route::auth();
-
 // Password Reset Routes...
 $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
@@ -25,6 +28,8 @@ Route::resource('resource', 'ResourceController');
 Route::resource('category', 'CategoryController');
 
 Route::get('reservation/categories', 'ReservationController@categories');
+Route::get('reservation/reservations', 'ReservationController@reservations');
+Route::get('reservation/index', 'ReservationController@index');
 Route::get('reservation/resources/category_id/{category_id}',
   'ReservationController@resources');
 Route::get('reservation/category/{id}', 'ReservationController@category');

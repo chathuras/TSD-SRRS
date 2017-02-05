@@ -1,26 +1,25 @@
 $(document).ready(function () {
-	var getResources = function () {
-		//console.log(document.forms[0].elements['category_id'].value)
-		//var categoryId = document.forms[0].elements['category_id'].value;
-		$.get('/reservation/resources/category_id/' + document.forms[0].elements['category_id'].value, function (response) {
+  var getResources = function () {
+    $.get('/reservation/resources/category_id/1', function (response) {
+console.log(response);
+      if (response) {
+        destroyDataTable();
+        $('#iTbodyResources').html(response);
+        initializeDataTable();
+      }
 
-			if (response) {
-				destroyDataTable();
-				$('#iTbodyResources').html(response);
-				initializeDataTable();
-			}
+      $('.cTrResource').click(function () {
+        var id = $(this).data('id');
 
-			$('.cTrResource').click(function () {
-				var id = $(this).data('id');
+        $.get('/reservation/' + id + '/edit', function (response) {
+          $('#iDivResourceForm').html(response);
+          bindUpdateSubmit(id);
+          bindCategorySelect();
+        });
+      });
+    });
+  };
 
-				$.get('/reservation/' + id + '/edit', function (response) {
-					$('#iDivResourceForm').html(response);
-					bindUpdateSubmit(id);
-					bindCategorySelect();
-				});
-			});
-		});
-	};
   var bindStoreSubmit = function () {
     $('#iFormResource').submit(function (event) {
       // TODO add $.blockui
