@@ -9,7 +9,7 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-content nopadding">
-                    <div id="iDivCategoryForm" >
+                    <div id="iDivCategoryForm">
                         @include('category.form')
                     </div>
                 </div>
@@ -19,6 +19,7 @@
     <div class="widget-box">
         <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
             <h5>Resource Categories</h5>
+            <a class="btn btn btn-success" href="/category/create">Add</a>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
@@ -26,8 +27,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    {{--<th>Platform(s)</th>--}}
-                    {{--<th>Engine version</th>--}}
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody id="iTbodyCategories"></tbody>

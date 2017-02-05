@@ -31,9 +31,10 @@
         <div class="control-group">
             <label class="control-label">Icon</label>
             <div class="controls">
-                <img id="imgIcon" src="">
+                <img id="imgIcon" src="/storage/category/{{$category->icon or ''}}">
                 <input type="file" class="cHidden" name="iconFile" id="iInputIconFile" accept="image/*">
-                <input type="text" class="cHidden" name="icon" id="iInputIcon" required>
+                <input type="text" class="cHidden" name="icon" id="iInputIcon" value="{{$category->icon or ''}}"
+                       required>
                 <input type="text" name="iconFileName" id="iInputIconFileName" required readonly>
                 <button type="button" class="btn btn-success" id="iBtnUpload">Upload</button>
             </div>

@@ -7,12 +7,31 @@ $(document).ready(function () {
         initializeDataTable();
       }
 
-      $('.cTrCategory').click(function () {
+      $('.cBtnCategoryEdit').click(function () {
         var id = $(this).data('id');
 
         $.get('/category/' + id + '/edit', function (response) {
           $('#iDivCategoryForm').html(response);
           bindUpdateFormSubmit(id);
+        });
+      });
+
+      $('.cBtnCategoryDelete').click(function () {
+        var id = $(this).data('id');
+
+        bootbox.confirm('Are you sure?', function (result) {
+          if (result) {
+            $.ajax({
+              url: '/category/' + id, type: 'DELETE', success: function () {
+                $('#iDivSuccess').show('fast');
+                setTimeout(function () {
+                  $('#iDivSuccess').hide('slow');
+                }, 1000);
+                getCategories();
+                $('#iFormCategory')[0].reset();
+              }
+            });
+          }
         });
       });
     });
@@ -68,20 +87,29 @@ $(document).ready(function () {
     $('#iFormCategory').submit(function (event) {
       // TODO add $.blockui
       event.preventDefault();
+      if ($('#iFormCategory').valid()) {
+        var category = {
+          name: $('#iInputName').val(),
+          description: $('#iTextDescription').val(),
+          icon: $('#iInputIcon').val(),
+          color: $('#iInputColor').val()
+        };
 
-      var category = {
-        _method: 'PUT',
-        id: id,
-        name: $('#iInputName').val(),
-        description: $('#iTextDescription').val()
-      };
-
-      $.ajax({
-        url: '/category/' + id, type: 'PUT', data: category, success: function () {
-          getCategories();
-        }
-      });
+        $.ajax({
+          url: '/category/' + id, type: 'PUT', data: category, success: function () {
+            $('#iDivSuccess').show('fast');
+            setTimeout(function () {
+              $('#iDivSuccess').hide('slow');
+            }, 1000);
+            getCategories();
+            $('#iFormCategory')[0].reset();
+          }
+        });
+      }
     });
+    bindColorInput();
+    bindBtnIconUpload();
+    bindInputIconFile();
   };
 
   var dataTable = $('.data-table');
