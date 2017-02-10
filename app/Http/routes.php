@@ -24,11 +24,6 @@ $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 $this->post('password/reset', 'Auth\PasswordController@reset');
 
-Route::resource('resource', 'ResourceController');
-
-Route::post('category/upload', 'CategoryController@upload');
-Route::resource('category', 'CategoryController');
-
 Route::get('reservation/categories', 'ReservationController@categories');
 Route::get('reservation/reservations', 'ReservationController@reservations');
 Route::get('reservation/index', 'ReservationController@index');
@@ -39,3 +34,11 @@ Route::get('reservation/resources/calendar/{resource_id}', 'ReservationControlle
 Route::get('reservation/resources/reservations/{reservation_id}', 'ReservationController@reservation');
 Route::get('reservation/resources/resource/{resource_id}', 'ReservationController@resource');
 Route::resource('reservation', 'ReservationController');
+
+
+// Admin only routes
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('resource', 'ResourceController');
+    Route::post('category/upload', 'CategoryController@upload');
+    Route::resource('category', 'CategoryController');
+});

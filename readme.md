@@ -119,3 +119,8 @@ http://srrs.app/
 E-Mail Address: admin@srrs.app
 Password: admin1
 ```
+
+## Setting up on server
+```
+php artisan config:cache
+```
