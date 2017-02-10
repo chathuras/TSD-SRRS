@@ -4,7 +4,7 @@
       novalidate="novalidate">
     <div class="span5">
         <div class="control-group">
-            <label class="control-label">Resource Category</label>
+            <label class="control-label">Resource Category *</label>
             <div class="controls">
                 <input name="name" type="text" id="iInputName" placeholder="Category Name"
                        value="{{$category->name or ''}}"
@@ -12,14 +12,14 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Description</label>
+            <label class="control-label">Description *</label>
             <div class="controls">
                 <textarea name="description" id="iTextDescription"
                           placeholder="Description" required>{{$category->description or ''}}</textarea>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Background Colour</label>
+            <label class="control-label">Background Colour *</label>
             <div class="controls">
                 <input name="color" type="text" id="iInputColor" placeholder="Background Colour"
                        value="{{$category->color or ''}}"
@@ -29,9 +29,9 @@
     </div>
     <div class="span5">
         <div class="control-group">
-            <label class="control-label">Icon</label>
+            <label class="control-label">Category Image * </label>
             <div class="controls">
-                <img id="imgIcon" src="/storage/category/{{$category->icon or ''}}">
+                <img id="imgIcon" src="@if(!empty($category->icon)) {{'/storage/category/' . $category->icon }} @else {{'/img/question.png' }} @endif">
                 <input type="file" class="cHidden" name="iconFile" id="iInputIconFile" accept="image/*">
                 <input type="text" class="cHidden" name="icon" id="iInputIcon" value="{{$category->icon or ''}}"
                        required>
