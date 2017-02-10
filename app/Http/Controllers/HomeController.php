@@ -34,7 +34,7 @@ class HomeController extends Controller
        // var_dump($reservations);
         //die();
         $users = DB::table('users')
-            ->select('name', 'email', 'role', 'created_at')
+            ->select('name', 'email', 'created_at')
             ->where([['status', '=', 1]])->get();
 // var_dump($users);
 //        die();
