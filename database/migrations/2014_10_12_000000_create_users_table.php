@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-						$table->string('role');
 						$table->integer('status')->unsigned();
 						$table->string('activation_key');
             $table->rememberToken();
@@ -32,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user');
+        Schema::drop('users');
     }
 }
