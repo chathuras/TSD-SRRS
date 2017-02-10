@@ -49,6 +49,7 @@
     <!--sidebar-menu-->
     <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard </a>
         <ul>
+            @role('admin')
             <li class="submenu">
                 <a href="#"><i class="icon icon-home"></i> <span>Resource Management</span></a>
                 <ul>
@@ -56,6 +57,7 @@
                     <li><a href="/category/create/">Categories</a></li>
                 </ul>
             </li>
+            @endrole
             <li class="submenu">
                 <a href="#"><i class="icon-calendar"></i> <span>Resource Reservation</span></a>
                 <ul>
@@ -64,7 +66,9 @@
                 </ul>
             </li>
             <li><a href="/reports/index/"><i class="icon icon-signal"></i> <span>Statistics</span></a></li>
+            @role('admin')
             <li><a href="/users/index/"><i class="icon-user"></i> <span>User Management</span></a></li>
+            @endrole
         </ul>
     </div>
     <!--sidebar-menu-->
