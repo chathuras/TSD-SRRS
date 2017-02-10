@@ -19,14 +19,14 @@ class StudentTableSeeder extends Seeder
 //$faker->numberBetween(1, 10),
         $students = [
           [
-						'reg_id' => 's-99',
-						'pin'  => $faker->numberBetween(100, 1000),
-						'name' => $faker->name,
-						'date_of_birth' => gmdate('Y-m-d H:i:s'),
+            'reg_id' => 's-99',
+            'pin'  => $faker->numberBetween(100, 1000),
+            'name' => $faker->name,
+            'date_of_birth' => gmdate('Y-m-d H:i:s'),
             'address' => $faker->sentence(2),
-						'email_address' => 'student@srrs.app',
-						'contact_number' => '94777278818',
-						'class' => '11B',
+            'email_address' => 'student@srrs.app',
+            'contact_number' => '94777278818',
+            'class' => '11B',
             'created_at' => gmdate('Y-m-d H:i:s'),
             'updated_at' => gmdate('.Y-m-d H:i:s')
           ]

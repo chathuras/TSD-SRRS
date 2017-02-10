@@ -54,6 +54,7 @@ class ReservationController extends Controller
         $reservation = new Reservations();
         $reservation -> resource_id = $request ->resource_id;
         $reservation -> user_id = $user ->email;
+        $reservation -> purpose = $request ->purpose;
         $reservation -> name = $request ->name;
         $reservation -> address = $request ->address;
         $reservation -> nic_number = $request ->nic;
@@ -61,6 +62,7 @@ class ReservationController extends Controller
         $reservation -> email_address = $request ->email_address;
         $reservation -> start = $request ->start;
         $reservation -> end = $request ->end;
+        //add valication code to ensure that there are no overlapping reservations
         return json_encode($reservation -> save());
     }
 
@@ -132,7 +134,7 @@ class ReservationController extends Controller
 					 'category_id' =>  $id]);
     }
 		
-		public function resources($category_id)
+    public function resources($category_id)
     {
         return view('reservation.resources-row',
           ['resources' => Resources::where('category_id', $category_id)->get()]);
@@ -147,5 +149,22 @@ class ReservationController extends Controller
     {
         //return $resource_id;
         return view('reservation.calendar', ['resource_id' => $resource_id]);
+    }
+
+    public function reservation($reservation_id)
+    {
+        //return $resource_id;
+//        return view('reservation.calendar', ['resource_id' => $resource_id]);
+        $reservation = Reservations::where('id', $reservation_id)->first();
+//        var_dump($reservation);
+//        die();
+        return view('reservation.calendar',
+            ['reservation' => $reservation, 'resource_id' => $reservation -> resource_id]);
+    }
+
+    public function resource($resource_id)
+    {
+        return view('reservation.resource',
+            ['resources' => Resources::where('id', $resource_id)->get()]);
     }
 }

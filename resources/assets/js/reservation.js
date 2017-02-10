@@ -3,18 +3,21 @@ $(document).ready(function () {
     //console.log(document.forms[0].elements['category_id'].value)
     //var categoryId = document.forms[0].elements['category_id'].value;
     $.get('/reservation/resources/category_id/' + document.forms[0].elements['category_id'].value, function (response) {
-
-      if (response) {
-        destroyDataTable();
-        $('#iTbodyResources').html(response);
-        initializeDataTable();
-      }
-
-      $('.cTrResource').click(function () {
-        var id = $(this).data('id');
-        console.log('RES ID ' + id);
-        showReservationDialog(id);
-      });
+        if (response) {
+            destroyDataTable();
+            $('#iTbodyResources').html(response);
+            initializeDataTable();
+        }
+        $('#btnViewResource').click(function () {
+            var id = $(this).data('id');
+            console.log('RES ID ' + id);
+            showResourceDialog(id);
+        });
+        $('#btnReserveResource').click(function () {
+            var id = $(this).data('id');
+            console.log('RES ID ' + id);
+            showReservationDialog(id);
+        });
     });
   };
   var bindStoreSubmit = function () {
@@ -87,18 +90,38 @@ $(document).ready(function () {
   bindCategorySelect();
   initializeDataTable();
 
+  var showResourceDialog = function (resourceId) {
+      console.log('view resourceId >> ' + resourceId);
+      $.get('/reservation/resources/resource/'+ resourceId, function (response) {
+          // alert(response);
+          $('#resCalendar').html(response);
+
+          $('#resCalendar').attr("class", "modal fade in");
+          $('#resCalendar').attr("aria-hidden", "false");
+
+          $( "#btnReserveResourceDialog" ).click(function() {
+              var id = $(this).data('id');
+              alert( "Handler for btnReserveResource .click() called. ID >> " + id);
+              $('#resCalendar').attr("class", "modal fade");
+              $('#resCalendar').attr("aria-hidden", "true");
+              showReservationDialog(id);
+          });
+          event.preventDefault();
+      });
+  }
+
   var showReservationDialog = function (resourceId) {
     console.log('resourceId >> 0' + resourceId);
       $.get('/reservation/resources/calendar/'+ resourceId, function (response) {
 
           if (response) {
-            alert(response);
               $('#resCalendar').html(response);
 
               $( "#resSave" ).click(function() {
-                  alert( "Handler for .click() called." + $('#iInputName').val());
+                  // alert( "Handler for .click() called." + $('#iInputName').val());
                   var reservation = {
                       resource_id: resourceId,
+                      purpose: $('#iInputPurpose').val(),
                       name: $('#iInputName').val(),
                       address: $('#iInputAddress').val(),
                       nic: $('#iInputNIC').val(),
@@ -108,13 +131,15 @@ $(document).ready(function () {
                       end:$('#iInputEndDate').val(),
                   };
 
-                  console.log(reservation);
+                  // console.log(reservation);
 
                   // alert( "Handler for .click() called." + reservation);
                   $.post("/reservation", reservation, function (response) {
                       if (response) {
                         alert(response);
                       }
+                      $('#resCalendar').attr("class", "modal fade");
+                      $('#resCalendar').attr("aria-hidden", "true");
                   });
                   event.preventDefault();
               });
@@ -135,6 +160,8 @@ $(document).ready(function () {
                       right: 'month,basicWeek,basicDay'
                   },
                   editable: true,
+                  selectable: true,
+                  selectOverlap: false,
                   events: [
                       {
                           title: 'All day event',

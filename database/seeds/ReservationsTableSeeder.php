@@ -36,6 +36,7 @@ class ReservationsTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             array_push($reservations, [
               'resource_id' => $faker->numberBetween(1, 10), //ucfirst($faker->word),
+              'purpose' => $faker->sentence(2), //ucfirst($faker->word),
               'name' => ucfirst($faker->word),
               'address' => $faker->sentence(2),
               'nic_number' => $faker->word,
