@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class RoleMiddleware
 {
@@ -13,7 +14,7 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role, $permission)
+    public function handle($request, Closure $next, $role)
     {
         if (Auth::guest()) {
             if ($request->ajax() || $request->wantsJson()) {
@@ -27,9 +28,6 @@ class RoleMiddleware
             abort(403);
         }
 
-        if (! $request->user()->can($permission)) {
-            abort(403);
-        }
         return $next($request);
     }
 }
