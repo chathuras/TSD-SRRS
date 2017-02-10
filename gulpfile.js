@@ -33,7 +33,7 @@ if (elixir.config.production) {
     // mix.scripts('dashboard/*.js', 'public/js/dashboard.js');
     mix.scripts('dashboard/matrix.js', 'public/js/dashboard.js'); // matrix form validation, matrix tables should include if needed
     mix.scripts('register.js', 'public/js/register.js');
-    mix.scripts('reservation.reservations.js', 'public/js/reservation.reservations.js');
+
     mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
     mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
     mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');
@@ -68,4 +68,5 @@ elixir(function (mix) {
   mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
   mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
   mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');
+  mix.scripts('reservation.reservations.js', 'public/js/reservation.reservations.js');
 });

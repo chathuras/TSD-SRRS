@@ -13,20 +13,25 @@
 						<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
 							<h5>Personal-info</h5>
 						</div>
+							@php(var_dump($reservation['name']))
 						<div class="widget-content nopadding">
 							<form action="#" method="POST" class="form-horizontal" id="iFormReservation">
 								<input type="hidden" name="resource_id" value="{{ $resource_id }}">
+								<label class="control-label">Purpose</label>
+								<div class="controls">
+									<textarea class="span11"  placeholder="Purpose"  id="iInputPurpose">{{$reservation->purpose }}</textarea>
+								</div>
 								<label class="control-label">Name :</label>
 								<div class="controls">
-								<input type="text" class="span11" placeholder="Name" id="iInputName"/>
+									<input type="text" class="span11" placeholder="Name" id="iInputName" value="{{ $reservation->name }}"/>
 								</div>
 								<label class="control-label">Address</label>
 								<div class="controls">
-								<textarea class="span11" id="iInputAddress"></textarea>
+								<textarea class="span11" placeholder="Address" id="iInputAddress" value="{{ $reservation->address }}"></textarea>
 								</div>
 								<label class="control-label">NIC number :</label>
 								<div class="controls">
-								<input type="text" class="span11" placeholder="NIC number" id="iInputNIC"/>
+								<input type="text" class="span11" placeholder="NIC number" id="iInputNIC" value="{{ $reservation->nic_number }}"/>
 								</div>
 								<label class="control-label">Contact number :</label>
 								<div class="controls">

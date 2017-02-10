@@ -4,9 +4,9 @@
         <td>{{ $resource->description }}</td>
         <td>{{ $resource->location }}</td>
         <td>{{ $resource->description }}</td>
-				<td>
-					<button class="btn btn-primary btn-mini">View</button> 
-					<button type="button" class="btn btn-primary btn-mini" data-toggle="modal" data-target="#myModal">Reserve</button>
-				</td>
+        <td>
+            <button id="btnViewResource" data-id="{{ $resource->id }}" type="button" class="btn btn-primary btn-mini" data-toggle="modal" data-target="#myModal">View</button>
+            <button id="btnReserveResource" data-id="{{ $resource->id }}" type="button" class="btn btn-primary btn-mini" data-toggle="modal" data-target="#myModal">Reserve</button>
+        </td>
     </tr>
 @endforeach
