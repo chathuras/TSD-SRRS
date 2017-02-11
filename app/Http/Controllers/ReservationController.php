@@ -102,7 +102,21 @@ class ReservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        var_dump($request);
+//        var_dump('----------------------------------');
+//        $reservation = Reservation::find($id);
+
+        $reservation = Reservation::where('id', $id)->first();
+        $reservation -> resource_id = $request ->resource_id;
+        $reservation -> purpose = $request ->purpose;
+        $reservation -> name = $request ->name;
+        $reservation -> address = $request ->address;
+        $reservation -> nic_number = $request ->nic;
+        $reservation -> conact_number = $request ->contact_number;
+        $reservation -> email_address = $request ->email_address;
+        $reservation -> start = date_create_from_format('U', $request ->start); //Sat Feb 11 2017 07:00:00 GMT+0000
+        $reservation -> end = date_create_from_format('U', $request ->end);
+        return json_encode($reservation -> save());
     }
 
     /**
@@ -113,7 +127,8 @@ class ReservationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        return json_encode($reservation->delete());
     }
 
     public function categories()

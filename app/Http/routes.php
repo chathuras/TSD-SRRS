@@ -27,6 +27,8 @@ $this->post('password/reset', 'Auth\PasswordController@reset');
 
 Route::get('reservation/categories', 'ReservationController@categories');
 Route::get('reservation/reservations', 'ReservationController@reservations');
+Route::delete('reservation/reservations/{id}', 'ReservationController@destroy');
+Route::put('reservation/reservations/{id}', 'ReservationController@update');
 Route::get('reservation/index', 'ReservationController@index');
 Route::get('reservation/resources/category_id/{category_id}',
   'ReservationController@resources');
