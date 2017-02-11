@@ -111,6 +111,7 @@ class ResourceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resource = Resources::where('id', $id)->first();
+        return json_encode($resource->delete());
     }
 }

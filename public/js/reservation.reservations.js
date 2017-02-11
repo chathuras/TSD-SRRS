@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+});
+$(document).ready(function () {
 
     var showReservationDialog = function (resourceId, reservationId) {
         console.log('resourceId >> 0' + resourceId);
@@ -7,14 +14,36 @@ $(document).ready(function () {
             if (response) {
                 $('#resCalendar').html(response);
 
-                $( "#btnCancelRes" ).click(function() {
+                $( "#btnCancelRes").click(function() {
                     $('#resCalendar').attr("class", "modal fade");
                     $('#resCalendar').attr("aria-hidden", "true");
                     $('#resCalendar').empty();
                 });
 
+
+                $( "#btnResDelete" ).click(function() {
+                    Res = confirm('Are you sure you want to delete the selected reservation ? ');
+
+                    $.ajax({
+                        url: '/reservation/reservations/' + reservationId,
+                        type: 'DELETE',
+                        success: function(delResponse) {
+                            // Do something with the result
+                            if (delResponse) {
+                                getReservations();
+                                alert('Reservation successfully delete !');
+                                $('#resCalendar').attr("class", "modal fade");
+                                $('#resCalendar').attr("aria-hidden", "true");
+                                $('#resCalendar').empty();
+                            } else {
+                                alert('delete failed. Pls try again later')
+                            }
+                        }
+                    });
+                });
+
                 $("#resSave").click(function () {
-                    // alert( "Handler for .click() called." + $('#iInputName').val());
+                    alert( "Handler for .UPDATE called." + $('#iInputName').val());
                     var reservation = {
                         resource_id: resourceId,
                         purpose: $('#iInputPurpose').val(),
@@ -28,14 +57,22 @@ $(document).ready(function () {
                     };
 
                     // console.log(reservation);
-
-                    // alert( "Handler for .click() called." + reservation);
-                    $.post("/reservation", reservation, function (response) {
-                        if (response) {
-                            alert(response);
+                    $.ajax({
+                        url: '/reservation/reservations/' + reservationId,
+                        type: 'PUT',
+                        data: reservation,
+                        success: function(putResponse) {
+                            // Do something with the result
+                            if (putResponse) {
+                                alert('Reservation successfully Updated !');
+                                getReservations();
+                                $('#resCalendar').attr("class", "modal fade");
+                                $('#resCalendar').attr("aria-hidden", "true");
+                                $('#resCalendar').empty();
+                            } else {
+                                alert('Update failed. Pls try again later')
+                            }
                         }
-                        $('#resCalendar').attr("class", "modal fade");
-                        $('#resCalendar').attr("aria-hidden", "true");
                     });
                     event.preventDefault();
                 });
@@ -62,7 +99,6 @@ $(document).ready(function () {
                     select: function(start, end, allDay) {
                         // $('#iInputStartDate').val(start);
                         // $('#iInputEndDate').val(start);
-
 
                         $('#iInputStartDate').data('timestamp', new Date(start).getTime()/1000);
                         $('#iInputEndDate').data('timestamp', new Date(end).getTime()/1000);

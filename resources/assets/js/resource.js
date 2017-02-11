@@ -8,7 +8,7 @@ $(document).ready(function () {
         initializeDataTable();
       }
 
-      $('.cTrResource').click(function () {
+      $('.cBtnEdit').click(function () {
         var id = $(this).data('id');
 
         $.get('/resource/' + id + '/edit', function (response) {
@@ -17,6 +17,34 @@ $(document).ready(function () {
           bindCategorySelect();
         });
       });
+
+      $('.cBtnDelete').click(function () {
+          var id = $(this).data('id');
+          bootbox.confirm('Are you sure?', function (result) {
+          if (result) {
+            $.get('/resource/' + id + '/delete', function (response) {
+                if (response) {
+                    $('#iDivSuccess').show('fast');
+                    setTimeout(function () {
+                        $('#iDivSuccess').hide('slow');
+                    }, 2000);
+                    getResources();
+                    $('#iFormCategory')[0].reset();
+                } else {
+                    $('#iDivError').show('fast');
+                    setTimeout(function () {
+                        $('#iDivError').hide('slow');
+                    }, 2000);
+                }
+            }).fail(function () {
+                $('#iDivError').show('fast');
+                setTimeout(function () {
+                    $('#iDivError').hide('slow');
+                }, 2000);
+            });
+          }});
+      });
+
     });
   };
 
@@ -24,16 +52,36 @@ $(document).ready(function () {
     $('#iFormResource').submit(function (event) {
       // TODO add $.blockui
       event.preventDefault();
-      var resource = {
-        name: $('#iInputName').val(),
-        category_id: $('#iInputCategoryId').val(),
-        location: $('#iInputLocation').val(),
-        description: $('#iInputDescription').val()
-      };
+      if ($('#iFormResource').valid()) {
+        var resource = {
+            name: $('#iInputName').val(),
+            category_id: $('#iInputCategoryId').val(),
+            location: $('#iInputLocation').val(),
+            description: $('#iInputDescription').val()
+        };
 
-      $.post("/resource", resource, function (response) {
-        getResources();
-      });
+        $.post("/resource", resource, function (response) {
+
+            if (response) {
+                $('#iDivSuccess').show('fast');
+                setTimeout(function () {
+                    $('#iDivSuccess').hide('slow');
+                }, 2000);
+                getResources();
+                $('#iFormResource')[0].reset();
+            } else {
+                $('#iDivError').show('fast');
+                setTimeout(function () {
+                    $('#iDivError').hide('slow');
+                }, 2000);
+            }
+        }).fail(function () {
+            $('#iDivError').show('fast');
+            setTimeout(function () {
+                $('#iDivError').hide('slow');
+            }, 2000);
+        });
+      }
     });
   };
 
@@ -41,19 +89,44 @@ $(document).ready(function () {
     $('#iFormResource').submit(function (event) {
       // TODO add $.blockui
       event.preventDefault();
-      var resource = {
-        _method: 'PUT', id: id, name: $('#iInputName').val(), category_id: $('#iInputCategoryId').val(),
-        location: $('#iInputLocation').val(),
-        description: $('#iInputDescription').val()
-      };
 
+      if ($('#iFormResource').valid()) {
+          var resource = {
+              id: id,
+              name: $('#iInputName').val(),
+              category_id: $('#iInputCategoryId').val(),
+              location: $('#iInputLocation').val(),
+              description: $('#iInputDescription').val()
+          };
+          $.ajax({
+              url: '/resource/' + id, type: 'PUT', data: resource, success: function (response) {
+
+                  if (response) {
+                      $('#iDivSuccess').show('fast');
+                      setTimeout(function () {
+                          $('#iDivSuccess').hide('slow');
+                      }, 2000);
+                      getResources();
+                      $('#iFormCategory')[0].reset();
+                  } else {
+                      $('#iDivError').show('fast');
+                      setTimeout(function () {
+                          $('#iDivError').hide('slow');
+                      }, 2000);
+                  }
+
+              }
+          }).fail(function () {
+              $('#iDivError').show('fast');
+              setTimeout(function () {
+                  $('#iDivError').hide('slow');
+              }, 2000);
+          });
+
+      }
       console.log(resource);
 
-      $.ajax({
-        url: '/resource/' + id, type: 'PUT', data: resource, success: function (response) {
-          getResources();
-        }
-      });
+
     });
   };
 

@@ -68,5 +68,5 @@ elixir(function (mix) {
   mix.scripts(['csrf.js', 'category.js'], 'public/js/category.js');
   mix.scripts(['csrf.js', 'resource.js'], 'public/js/resource.js');
   mix.scripts(['csrf.js', 'reservation.js'], 'public/js/reservation.js');
-  mix.scripts('reservation.reservations.js', 'public/js/reservation.reservations.js');
+  mix.scripts(['csrf.js', 'reservation.reservations.js'], 'public/js/reservation.reservations.js');
 });
