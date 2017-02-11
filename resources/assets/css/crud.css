@@ -22,3 +22,9 @@ input.cHidden {
 #iDivRegister {
   margin-left: 100px;
 }
+
+.anchorTxt { color: #FFF !important; }
+
+.marginTopZero { margin-top: 0px !important; }
+.actionsLiPadding { padding: 10px !important; }
+.actionsListTxt { padding-left: 5px !important; text-align: left !important; font-size: 16px !important; line-height: 28px; font-weight: 600; }
