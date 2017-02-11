@@ -75,6 +75,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     // Resource
     Route::resource('resource/{id}/delete', 'ResourceController@destroy');
+    Route::resource('resource/upload', 'ResourceController@upload');
     Route::resource('resource', 'ResourceController');
 
     // Reports

@@ -8,7 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="span5">
 						<div class="widget-box">
 						<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
 							<h5>Reservation Information</h5>
@@ -58,7 +58,7 @@
 						</div>
 					</div>
 			
-					<div class="span8">
+					<div class="span7">
 						<div class="widget-box widget-calendar">
 							<div class="widget-title"> <span class="icon"><i class="icon-calendar"></i></span>
 							<h5>Calendar</h5>

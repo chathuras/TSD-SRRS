@@ -54,6 +54,7 @@ class ResourceController extends Controller
         $resource->name = $request->name;
         $resource->location = $request->location;
         $resource->description = $request->description;
+        $resource->icon = $request->icon;
 
         return json_encode($resource->save());
     }
@@ -99,7 +100,7 @@ class ResourceController extends Controller
         $resource->category_id = (int)$request->category_id;
         $resource->location = $request->location;
         $resource->description = $request->description;
-
+        $resource->icon = $request->icon;
         return json_encode($resource->save());
     }
 
@@ -113,5 +114,14 @@ class ResourceController extends Controller
     {
         $resource = Resources::where('id', $id)->first();
         return json_encode($resource->delete());
+    }
+
+    public function upload(Request $request)
+    {
+        $iconFileName = uniqid();
+        $iconFileName .= "." . $request->iconFile->guessExtension();
+        $request->iconFile->move('storage/category', $iconFileName);
+
+        return json_encode($iconFileName);
     }
 }

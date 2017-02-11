@@ -38,9 +38,10 @@
 			</div>
 		</div>
 	</form>
-	<div class="modal fade" id="resCalendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:90%; left: 30% !important;">
+	<!-- div class="modal fade" id="resCalendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:90%; left: 30% !important;" -->
 	<!-- div id="resCalendar" role="dialog" style="width:90%; left: 30% !important;" -->
-	</div>	
+	<div class="modal fade" id="resCalendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:82%; left: 30% !important; top: 2%;">
+	</div>
 @endsection	
 
 @section('js-extra')
