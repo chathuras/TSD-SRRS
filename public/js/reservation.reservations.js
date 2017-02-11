@@ -7,6 +7,12 @@ $(document).ready(function () {
             if (response) {
                 $('#resCalendar').html(response);
 
+                $( "#btnCancelRes" ).click(function() {
+                    $('#resCalendar').attr("class", "modal fade");
+                    $('#resCalendar').attr("aria-hidden", "true");
+                    $('#resCalendar').empty();
+                });
+
                 $("#resSave").click(function () {
                     // alert( "Handler for .click() called." + $('#iInputName').val());
                     var reservation = {
@@ -52,6 +58,18 @@ $(document).ready(function () {
                     editable: true,
                     selectable: true,
                     selectOverlap: false,
+                    eventStartEditable: false,
+                    select: function(start, end, allDay) {
+                        // $('#iInputStartDate').val(start);
+                        // $('#iInputEndDate').val(start);
+
+
+                        $('#iInputStartDate').data('timestamp', new Date(start).getTime()/1000);
+                        $('#iInputEndDate').data('timestamp', new Date(end).getTime()/1000);
+                        /* $('#eventStart').datepicker("setDate", new Date(start));
+                         $('#eventEnd').datepicker("setDate", new Date(end));
+                         $('#calEventDialog') -->.dialog('open'); */
+                    },
                     events:'/reservation/reservation_search?resource_id='+resourceId
                 });
             }

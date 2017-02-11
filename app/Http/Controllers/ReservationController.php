@@ -54,7 +54,7 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $reservation = new Reservations();
+        $reservation = new Reservation();
         $reservation -> resource_id = $request ->resource_id;
         $reservation -> user_id = $user ->email;
         $reservation -> purpose = $request ->purpose;

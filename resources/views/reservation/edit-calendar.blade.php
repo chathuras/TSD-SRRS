@@ -49,8 +49,9 @@
 								<input type="text" class="span11" placeholder="Reservation End Date" id="iInputEndDate" value="{{ $reservation->end or ''}}"/>
 								</div>
 								<div class="form-actions">
-									<button type="button" class="btn btn-success" id="resSave">Save</button>
-									<button type="reset" class="btn btn-success" id="resReset">Cancel</button>
+									<button type="button" class="btn btn-success" id="resSave">Update</button>
+									<button type="button" class="btn btn-success" id="btnResDelete">Delete</button>
+									<button type="button" class="btn btn-warning" id="btnCancelRes">Close</button>
 								</div>
 							</form>
 						</div>
