@@ -73,6 +73,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+//        var_dump(Category::where('id', $id)->first());
         return view('category.form',
           ['category' => Category::where('id', $id)->first()]);
     }
