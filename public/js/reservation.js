@@ -15,12 +15,12 @@ $(document).ready(function () {
             $('#iTbodyResources').html(response);
             initializeDataTable();
         }
-        $('#btnViewResource').click(function () {
+        $('.btnViewResource').click(function () {
             var id = $(this).data('id');
             console.log('RES ID ' + id);
             showResourceDialog(id);
         });
-        $('#btnReserveResource').click(function () {
+        $('.btnReserveResource').click(function () {
             var id = $(this).data('id');
             console.log('RES ID ' + id);
             showReservationDialog(id);
@@ -106,14 +106,14 @@ $(document).ready(function () {
           $('#resCalendar').attr("class", "modal fade in");
           $('#resCalendar').attr("aria-hidden", "false");
 
-          $( "#btnReserveResourceDialog" ).click(function() {
+          $( '.btnReserveResourceDialog' ).click(function() {
               var id = $(this).data('id');
               $('#resCalendar').attr("class", "modal fade");
               $('#resCalendar').attr("aria-hidden", "true");
               showReservationDialog(id);
           });
 
-          $( "#btnCancelResourceDialog" ).click(function() {
+          $( '.btnCancelResourceDialog' ).click(function() {
               $('#resCalendar').attr("class", "modal fade");
               $('#resCalendar').attr("aria-hidden", "true");
               $('#resCalendar').empty();
@@ -140,30 +140,47 @@ $(document).ready(function () {
 
                   // console.log($('#iInputStartDate').data('timestamp'));
                   // console.log($('#iInputEndDate').data('timestamp'));
+                  if ($('#iFormReservation').valid()) {
+                      var reservation = {
+                          resource_id: resourceId,
+                          purpose: $('#iInputPurpose').val(),
+                          name: $('#iInputName').val(),
+                          address: $('#iInputAddress').val(),
+                          nic: $('#iInputNIC').val(),
+                          contact_number: $('#iInputContactNum').val(),
+                          email_address: $('#iInputEmail').val(),
+                          start: $('#iInputStartDate').data('timestamp'),
+                          end: $('#iInputEndDate').data('timestamp'),
+                      };
 
-                  var reservation = {
-                      resource_id: resourceId,
-                      purpose: $('#iInputPurpose').val(),
-                      name: $('#iInputName').val(),
-                      address: $('#iInputAddress').val(),
-                      nic: $('#iInputNIC').val(),
-                      contact_number: $('#iInputContactNum').val(),
-                      email_address: $('#iInputEmail').val(),
-                      start:$('#iInputStartDate').data('timestamp'),
-                      end:$('#iInputEndDate').data('timestamp'),
-                  };
+                      // console.log(reservation);
 
-                  // console.log(reservation);
-
-                  // alert( "Handler for .click() called." + reservation);
-                  $.post("/reservation", reservation, function (response) {
-                      if (response) {
-                        alert(response);
-                      }
-                      $('#resCalendar').attr("class", "modal fade");
-                      $('#resCalendar').attr("aria-hidden", "true");
-                      $('#resCalendar').empty();
-                  });
+                      // alert( "Handler for .click() called." + reservation);
+                      $.post("/reservation", reservation, function (response) {
+                          if (response) {
+                            alert('Reservation successfully created !');
+                          }
+                          if (response) {
+                              $('#iDivSuccess').show('fast');
+                              setTimeout(function () {
+                                  $('#iDivSuccess').hide('slow');
+                              }, 1000);
+                          } else {
+                              $('#iDivError').show('fast');
+                              setTimeout(function () {
+                                  $('#iDivError').hide('slow');
+                              }, 2000);
+                          }
+                          $('#resCalendar').attr("class", "modal fade");
+                          $('#resCalendar').attr("aria-hidden", "true");
+                          $('#resCalendar').empty();
+                      }).fail(function () {
+                          $('#iDivError').show('fast');
+                          setTimeout(function () {
+                              $('#iDivError').hide('slow');
+                          }, 2000);
+                      });
+                  }
                   event.preventDefault();
               });
 

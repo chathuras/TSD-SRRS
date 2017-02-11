@@ -22,6 +22,7 @@ class CreateResourcesTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->string('description');
+            $table->string('icon');
             $table->timestamps();
         });
     }

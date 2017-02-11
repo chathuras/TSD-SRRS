@@ -55,6 +55,12 @@ $(document).ready(function () {
     });
   };
 
+    var bindBtnIconUpload = function () {
+        $('#iBtnUpload').click(function () {
+            $('#iInputIconFile').click();
+        });
+    };
+
   var bindStoreSubmit = function () {
     $('#iFormResource').submit(function (event) {
       // TODO add $.blockui
@@ -64,7 +70,8 @@ $(document).ready(function () {
             name: $('#iInputName').val(),
             category_id: $('#iInputCategoryId').val(),
             location: $('#iInputLocation').val(),
-            description: $('#iInputDescription').val()
+            description: $('#iInputDescription').val(),
+            icon: $('#iInputIcon').val()
         };
 
         $.post("/resource", resource, function (response) {
@@ -158,9 +165,30 @@ $(document).ready(function () {
     });
   };
 
+    var bindInputIconFile = function () {
+        $('#iInputIconFile').on('change', function () {
+            $.ajax({
+                url: "/resource/upload",
+                data: new FormData($('#iFormResource')[0]),
+                dataType: 'json',
+                async: true,
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $('#iInputIconFileName').val($('#iInputIconFile')[0].files[0].name);
+                    $('#iInputIcon').val(response);
+                    $('#imgIcon').attr('src', '/storage/category/' + response);
+                }
+            });
+        });
+    };
+
   getResources();
   bindStoreSubmit();
   bindCategorySelect();
+  bindBtnIconUpload();
+  bindInputIconFile();
   initializeDataTable();
 });
 //# sourceMappingURL=resource.js.map

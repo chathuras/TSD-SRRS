@@ -27,6 +27,8 @@ class ResourceTableSeeder extends Seeder
               'category_id' => $faker->numberBetween(1, 10),
               'location' => $faker->sentence(2),
               'description' => $faker->sentence(6),
+              'icon' => $faker->image('public/storage/category', 640, 480,
+                    'cats', false),
               'created_at' => gmdate('Y-m-d H:i:s'),
               'updated_at' => gmdate('Y-m-d H:i:s')
             ]);
