@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="span3"></div>
-        <div class="span6">
+        <div class="span6" id="iDivRegister">
             <div class="widget-box">
                 <div class="widget-title"><span class="icon"> <i class="icon-user"></i> </span>
                     <h5>New user registration</h5>
@@ -17,7 +17,8 @@
                         {{ csrf_field() }}
                         <label class="control-label">Teacher/Student ID :</label>
                         <div class="controls">
-                            <input type="text" placeholder="Teacher/Student ID" name="userId" id="iInputUserid" value="{{ old('userId') }}"/>
+                            <input type="text" placeholder="Teacher/Student ID" name="userId" id="iInputUserid"
+                                   value="{{ old('userId') }}"/>
                             @if ($errors->has('userId'))
                                 <span class="help-block error">
                                         <strong>{{ $errors->first('userId') }}</strong>
@@ -26,7 +27,8 @@
                         </div>
                         <label class="control-label">PIN Number :</label>
                         <div class="controls">
-                            <input type="password" placeholder="PIN Number" name="pinNumber" id="iInputPinNum" value="{{ old('pinNumber') }}"/>
+                            <input type="password" placeholder="PIN Number" name="pinNumber" id="iInputPinNum"
+                                   value="{{ old('pinNumber') }}"/>
                             @if ($errors->has('pinNumber'))
                                 <span class="help-block error">
                                         <strong>{{ $errors->first('pinNumber') }}</strong>
@@ -35,7 +37,8 @@
                         </div>
                         <label class="control-label">Password :</label>
                         <div class="controls">
-                            <input type="password" placeholder="Password" name="password" id="iInputPasswd" value="{{ old('password') }}"/>
+                            <input type="password" placeholder="Password" name="password" id="iInputPasswd"
+                                   value="{{ old('password') }}"/>
                             @if ($errors->has('password'))
                                 <span class="help-block error">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -54,7 +57,7 @@
                         </div>
                         @if ($errors->has('email_address'))
                             <span class="help-block error">
-                                        <strong>This user has been registered already</strong>
+                                        <strong>This user has been registered alreadyspa</strong>
                                     </span>
                         @endif
                         <div class="form-actions">
