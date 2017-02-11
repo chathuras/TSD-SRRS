@@ -29,7 +29,7 @@
                 <input type="file" class="cHidden" name="iconFile" id="iInputIconFile" accept="image/*">
                 <input type="text" class="cHidden" name="icon" id="iInputIcon" value="{{$category->icon or ''}}"
                        required>
-                <input type="text" name="iconFileName" id="iInputIconFileName" required readonly>
+                <input type="text" name="iconFileName" id="iInputIconFileName" value="{{$category->icon or ''}}" required readonly>
                 <button type="button" class="btn btn-success" id="iBtnUpload">Upload</button>
             </div>
         </div>
