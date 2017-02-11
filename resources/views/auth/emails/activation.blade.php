@@ -1,1 +1,1 @@
-Click here to reset your password: <a href="{{ $link = url('password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}"> {{ $link }} </a>
+Click here to activate your account: <a href="{{ $link = url('account/activate', $token)}}"> {{ $link }} </a>

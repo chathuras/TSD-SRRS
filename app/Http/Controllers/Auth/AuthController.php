@@ -59,7 +59,7 @@ class AuthController extends Controller
                 break;
             case "as":
             case "nas":
-            $tableName = "staff";
+                $tableName = "staff";
                 $role = 'teacher';
                 break;
         }
@@ -80,7 +80,7 @@ class AuthController extends Controller
         if (sizeof($requester) > 0) {
             $obj = $requester['0'];
 
-            $validator = $this->validateUser((array) $obj);
+            $validator = $this->validateUser((array)$obj);
 
             if ($validator->fails()) {
                 $this->throwValidationException(
@@ -100,9 +100,6 @@ class AuthController extends Controller
             $user->assignRole($role);
 
             return $user->activation_key;
-
-            //        Auth::guard($this->getGuard())->login($this->create($request->all()));
-//        return redirect($this->redirectPath());
         }
     }
 
@@ -141,6 +138,19 @@ class AuthController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->save();
         return view('auth.home');
+    }
+
+    public function activate($key)
+    {
+        $user = User::where('activation_key', $key)->first();
+
+        if (!empty($user)) {
+            if (\Illuminate\Support\Facades\Auth::login($user)) {
+                if (!\Illuminate\Support\Facades\Auth::guest()) {
+                    return redirect('/');
+                }
+            }
+        }
     }
 
     /**
