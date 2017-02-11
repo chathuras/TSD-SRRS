@@ -16,7 +16,7 @@ if (elixir.config.production) {
     mix.styles('common/*.css', 'public/css/base.css');
     mix.styles('matrix-login.css', 'public/css/login.css');
     mix.styles([
-        'dashboard/fullcalendar.css',
+        'dashboard/fullcalendar.min.css',
         'dashboard/matrix-style.css', // check
         'dashboard/matrix-media.css',
         'dashboard/jquery.gritter.css',

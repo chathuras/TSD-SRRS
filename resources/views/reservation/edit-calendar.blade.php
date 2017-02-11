@@ -4,7 +4,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			<h4 class="modal-title" id="myModalLabel">Reservation</h4>
+			<h4 class="modal-title" id="myModalLabel">Update Reservation</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row-fluid">
@@ -50,7 +50,7 @@
 								</div>
 								<div class="form-actions">
 									<button type="button" class="btn btn-success" id="resSave">Save</button>
-									<button type="button" class="btn btn-warning" id="btnCancelRes">Cancel</button>
+									<button type="reset" class="btn btn-success" id="resReset">Cancel</button>
 								</div>
 							</form>
 						</div>
