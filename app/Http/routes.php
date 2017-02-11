@@ -68,6 +68,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('category', 'CategoryController');
 
     // Resource
+    Route::resource('resource/{id}/delete', 'ResourceController@destroy');
     Route::resource('resource', 'ResourceController');
 });
 

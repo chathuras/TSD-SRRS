@@ -14,7 +14,7 @@ $(document).ready(function () {
             if (response) {
                 $('#resCalendar').html(response);
 
-                $( "#btnCancelRes" ).click(function() {
+                $( "#btnCancelRes").click(function() {
                     $('#resCalendar').attr("class", "modal fade");
                     $('#resCalendar').attr("aria-hidden", "true");
                     $('#resCalendar').empty();
@@ -99,7 +99,6 @@ $(document).ready(function () {
                     select: function(start, end, allDay) {
                         // $('#iInputStartDate').val(start);
                         // $('#iInputEndDate').val(start);
-
 
                         $('#iInputStartDate').data('timestamp', new Date(start).getTime()/1000);
                         $('#iInputEndDate').data('timestamp', new Date(end).getTime()/1000);
