@@ -1,1 +1,25 @@
-.error{color:red}.cHidden,input.cHidden{display:none}#imgIcon{width:200px;height:200px}.datepicker{z-index:99999!important}#iDivRegister{margin-left:100px}
+.error {
+  color: red;
+}
+
+.cHidden {
+  display: none;
+}
+
+input.cHidden {
+  display: none;
+}
+
+#imgIcon {
+  width: 200px;
+  height: 200px;
+}
+
+.datepicker {
+  z-index: 99999 !important;
+}
+
+#iDivRegister {
+  margin-left: 100px;
+}
+/*# sourceMappingURL=crud.css.map */

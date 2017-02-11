@@ -36,37 +36,39 @@ $(document).ready(function () {
                 });
 
                 $("#resSave").click(function () {
-                    alert( "Handler for .UPDATE called." + $('#iInputName').val());
-                    var reservation = {
-                        resource_id: resourceId,
-                        purpose: $('#iInputPurpose').val(),
-                        name: $('#iInputName').val(),
-                        address: $('#iInputAddress').val(),
-                        nic: $('#iInputNIC').val(),
-                        contact_number: $('#iInputContactNum').val(),
-                        email_address: $('#iInputEmail').val(),
-                        start: $('#iInputStartDate').val(),
-                        end: $('#iInputEndDate').val(),
-                    };
+                    // alert( "Handler for .UPDATE called." + $('#iInputName').val());
+                    if ($('#iFormReservation').valid()) {
+                        var reservation = {
+                            resource_id: resourceId,
+                            purpose: $('#iInputPurpose').val(),
+                            name: $('#iInputName').val(),
+                            address: $('#iInputAddress').val(),
+                            nic: $('#iInputNIC').val(),
+                            contact_number: $('#iInputContactNum').val(),
+                            email_address: $('#iInputEmail').val(),
+                            start: $('#iInputStartDate').val(),
+                            end: $('#iInputEndDate').val(),
+                        };
 
-                    // console.log(reservation);
-                    $.ajax({
-                        url: '/reservation/reservations/' + reservationId,
-                        type: 'PUT',
-                        data: reservation,
-                        success: function(putResponse) {
-                            // Do something with the result
-                            if (putResponse) {
-                                alert('Reservation successfully Updated !');
-                                getReservations();
-                                $('#resCalendar').attr("class", "modal fade");
-                                $('#resCalendar').attr("aria-hidden", "true");
-                                $('#resCalendar').empty();
-                            } else {
-                                alert('Update failed. Pls try again later')
+                        // console.log(reservation);
+                        $.ajax({
+                            url: '/reservation/reservations/' + reservationId,
+                            type: 'PUT',
+                            data: reservation,
+                            success: function (putResponse) {
+                                // Do something with the result
+                                if (putResponse) {
+                                    alert('Reservation successfully Updated !');
+                                    getReservations();
+                                    $('#resCalendar').attr("class", "modal fade");
+                                    $('#resCalendar').attr("aria-hidden", "true");
+                                    $('#resCalendar').empty();
+                                } else {
+                                    alert('Reservation update failed. Please try again later')
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                     event.preventDefault();
                 });
 
