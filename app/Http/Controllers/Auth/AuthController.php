@@ -50,27 +50,44 @@ class AuthController extends Controller
     public function registerUser(Request $request)
     {
         $tokens = explode("-", $request->userId);
-        $table = "students";
+        $tableName = "students";
         $role = 'student';
 
         switch ($tokens[0]) {
             case "s":
-                $table = "students";
+                $tableName = "students";
                 break;
             case "as":
             case "nas":
-                $table = "staff";
+            $tableName = "staff";
                 $role = 'teacher';
                 break;
         }
 
-        $requester = DB::table($table)->where([
+        $validator = $this->validateAccount($request->all(), $tableName);
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+              $request, $validator
+            );
+        }
+
+        $requester = DB::table($tableName)->where([
           ['reg_id', '=', $request->input('userId')],
           ['pin', '=', (int)$request->input('pinNumber')],
         ])->get();
 
         if (sizeof($requester) > 0) {
             $obj = $requester['0'];
+
+            $validator = $this->validateUser((array) $obj);
+
+            if ($validator->fails()) {
+                $this->throwValidationException(
+                  $request, $validator
+                );
+            }
+
             $user = new User();
             $user->name = $obj->name;
             $user->email = $obj->email_address;
@@ -82,10 +99,35 @@ class AuthController extends Controller
             $user = User::where('email', $user->email)->first();
             $user->assignRole($role);
 
-            return view('auth.register');
-        } else {
-            return "a is smaller than b";
+            return $user->activation_key;
+
+            //        Auth::guard($this->getGuard())->login($this->create($request->all()));
+//        return redirect($this->redirectPath());
         }
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array $data
+     * @param  string $tableName
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validateAccount(array $data, $tableName)
+    {
+
+        return Validator::make($data, [
+          'userId' => 'required|max:10|exists:' . $tableName . ',reg_id',
+          'pinNumber' => 'required|min:3|max:3|exists:' . $tableName . ',pin',
+          'password' => 'required|min:6|confirmed',
+        ]);
+    }
+
+    protected function validateUser(array $data)
+    {
+        return Validator::make($data, [
+          'email_address' => 'unique:users,email',
+        ]);
     }
 
     public function changePassword()
@@ -99,21 +141,6 @@ class AuthController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->save();
         return view('auth.home');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-          'name' => 'required|max:255',
-          'email' => 'required|email|max:255|unique:users',
-          'password' => 'required|min:6|confirmed',
-        ]);
     }
 
     /**
