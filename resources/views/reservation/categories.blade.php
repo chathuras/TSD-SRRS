@@ -11,7 +11,7 @@
                             <a data-original-title="" href="/reservation/category/{{ $category->id }}">
                                 <image src="/storage/category/{{ $category->icon }}">
                                 {{--<i class="icon-eye-open"></i>--}}
-                                <div class="info">+89997</div>
+                                <div class="info">+{{$category->resources->count()}}</div>
                                 <div class="status">{{ $category->name }}</div>
                             </a>
                         </div>

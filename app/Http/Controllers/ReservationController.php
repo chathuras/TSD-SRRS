@@ -135,13 +135,7 @@ class ReservationController extends Controller
     {
         return view('reservation.categories',
           [
-            'categories' => Category::all([
-              'id',
-              'name',
-              'description',
-              'color',
-              'icon'
-            ])
+            'categories' => Category::with('resources') ->get()
           ]);
     }
 
