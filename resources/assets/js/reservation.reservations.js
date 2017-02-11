@@ -36,7 +36,6 @@ $(document).ready(function () {
                 });
 
                 $("#resSave").click(function () {
-                    alert( "Handler for .UPDATE called." + $('#iInputName').val());
                     var reservation = {
                         resource_id: resourceId,
                         purpose: $('#iInputPurpose').val(),
@@ -45,8 +44,8 @@ $(document).ready(function () {
                         nic: $('#iInputNIC').val(),
                         contact_number: $('#iInputContactNum').val(),
                         email_address: $('#iInputEmail').val(),
-                        start: $('#iInputStartDate').val(),
-                        end: $('#iInputEndDate').val(),
+                        start: $('#iInputStartDate').data('timestamp'),
+                        end: $('#iInputEndDate').data('timestamp')
                     };
 
                     // console.log(reservation);
@@ -57,7 +56,6 @@ $(document).ready(function () {
                         success: function(putResponse) {
                             // Do something with the result
                             if (putResponse) {
-                                alert('Reservation successfully Updated !');
                                 getReservations();
                                 $('#resCalendar').attr("class", "modal fade");
                                 $('#resCalendar').attr("aria-hidden", "true");
@@ -71,8 +69,8 @@ $(document).ready(function () {
                 });
 
 
-                $('#iInputStartDate').datepicker();
-                $('#iInputEndDate').datepicker();
+                // $('#iInputStartDate').datepicker();
+                // $('#iInputEndDate').datepicker();
 
                 var date = new Date();
                 var d = date.getDate();
@@ -81,14 +79,14 @@ $(document).ready(function () {
 
                 $('#calendar').fullCalendar({
                     header: {
-                        left: 'prev,next',
+                        left: 'prev,next today',
                         center: 'title',
-                        right: 'month,basicWeek,basicDay'
+                        right: 'month,agendaWeek,agendaDay,listWeek'
                     },
                     editable: true,
                     selectable: true,
                     selectOverlap: false,
-                    eventStartEditable: false,
+                    // eventStartEditable: false,
                     select: function(start, end, allDay) {
                         // $('#iInputStartDate').val(start);
                         // $('#iInputEndDate').val(start);
@@ -99,7 +97,21 @@ $(document).ready(function () {
                          $('#eventEnd').datepicker("setDate", new Date(end));
                          $('#calEventDialog') -->.dialog('open'); */
                     },
-                    events:'/reservation/reservation_search?resource_id='+resourceId
+                    eventResize:function(event) {
+                        $('#iInputStartDate').val(event.start);
+                        $('#iInputEndDate').val(event.end);
+
+                        $('#iInputStartDate').data('timestamp', event.start.toDate().getTime()/1000);
+                        $('#iInputEndDate').data('timestamp', event.end.toDate().getTime()/1000);
+                    },
+                    eventDrop: function(event) {
+                        $('#iInputStartDate').val(event.start);
+                        $('#iInputEndDate').val(event.end);
+
+                        $('#iInputStartDate').data('timestamp', event.start.toDate().getTime()/1000);
+                        $('#iInputEndDate').data('timestamp', event.end.toDate().getTime()/1000);
+                    },
+                    events:'/reservation/reservation_search?resource_id='+resourceId + '&reservation_id='+reservationId
                 });
             }
         });

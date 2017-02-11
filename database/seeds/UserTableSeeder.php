@@ -21,14 +21,14 @@ class UserTableSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $admin = [
-            'name' => $faker->name,
-            'email' => 'admin@srrs.app',
-            'password' => bcrypt('admin1'),
-            'status' => '1',
-            'activation_key' => $faker->uuid,
-            'created_at' => gmdate('Y-m-d H:i:s'),
-            'updated_at' => gmdate('.Y-m-d H:i:s')
-          ];
+          'name' => $faker->name,
+          'email' => 'admin@srrs.app',
+          'password' => bcrypt('admin1'),
+          'status' => '1',
+          'activation_key' => $faker->uuid,
+          'created_at' => gmdate('Y-m-d H:i:s'),
+          'updated_at' => gmdate('.Y-m-d H:i:s')
+        ];
 
         $officer = [
           'name' => $faker->name,
@@ -62,13 +62,13 @@ class UserTableSeeder extends Seeder
 
         $users = [$admin, $officer, $teacher, $student];
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 5; $i < 11; $i++) {
             array_push($users, [
               'name' => $faker->name,
               'email' => $faker->email,
-              'password' => bcrypt($faker->password),
+              'password' => bcrypt('user' . $i),
               'status' => '1',
-              'activation_key' => 'eewlepeqpepweleqwel',
+              'activation_key' => $faker->uuid,
               'created_at' => gmdate('Y-m-d H:i:s'),
               'updated_at' => gmdate('Y-m-d H:i:s')
             ]);
@@ -86,5 +86,15 @@ class UserTableSeeder extends Seeder
 
         $student = User::where('email', 'student@srrs.app')->first();
         $student->assignRole('student');
+
+        for ($i = 5; $i < 11; $i++) {
+            $user = User::where('id', $i)->first();
+            $user->assignRole($faker->randomElement([
+              'admin',
+              'officer',
+              'teacher',
+              'student'
+            ]));
+        }
     }
 }

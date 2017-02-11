@@ -185,8 +185,8 @@ $(document).ready(function () {
               });
 
 
-              $('#iInputStartDate').datepicker();
-              $('#iInputEndDate').datepicker();
+              // $('#iInputStartDate').datepicker();
+              // $('#iInputEndDate').datepicker();
 
               var date = new Date();
               var d = date.getDate();
@@ -204,7 +204,7 @@ $(document).ready(function () {
                   selectOverlap: false,
                   select: function(start, end, allDay) {
                       $('#iInputStartDate').val(start);
-                      $('#iInputEndDate').val(start);
+                      $('#iInputEndDate').val(end);
 
                       // console.log(new Date(start).getTime());
                       // console.log(new Date(end).getTime());
