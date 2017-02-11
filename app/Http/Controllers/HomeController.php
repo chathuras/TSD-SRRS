@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,17 +25,22 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $reservations = DB::table('reservations')
-            ->leftJoin('resources', 'reservations.resource_id', '=', 'resources.id')
-            ->select('resources.name', 'reservations.purpose','reservations.start', 'reservations.end')
-            ->orderBy('reservations.created_at')
-            ->limit(20)
-            ->get();
-       // var_dump($reservations);
-        //die();
-        $users = DB::table('users')
-            ->select('name', 'email', 'created_at')
-            ->where([['status', '=', 1]])->get();
+
+        if (Auth::user()->hasRole('admin')) {
+
+            $reservations = DB::table('reservations')
+              ->leftJoin('resources', 'reservations.resource_id', '=',
+                'resources.id')
+              ->select('resources.name', 'reservations.purpose',
+                'reservations.start', 'reservations.end')
+              ->orderBy('reservations.created_at')
+              ->limit(20)
+              ->get();
+            // var_dump($reservations);
+            //die();
+            $users = DB::table('users')
+              ->select('name', 'email', 'created_at')
+              ->where([['status', '=', 1]])->get();
 // var_dump($users);
 //        die();
 //        var_dump($users['0']);
@@ -56,15 +61,20 @@ class HomeController extends Controller
 //        die();
 
 
-        return view('home.home', [
-            'reservations' => $reservations,
-            'users' => $users
-        ]);
+            return view('home.home', [
+              'reservations' => $reservations,
+              'users' => $users
+            ]);
+
+        } else {
+            return redirect('/reservation/categories');
+        }
 //        return view('reservation.calendar', ['resource_id' => $resource_id]);
 //        return view('home.home', []);
     }
 
-    public function userManagement() {
+    public function userManagement()
+    {
         return view('user.management');
     }
 }

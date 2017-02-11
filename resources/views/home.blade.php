@@ -23,16 +23,16 @@
                  <span class="text">Welcome {{ Auth::user()->name }}</span>
 							</a>	
             </li>
-						 <li class="">
-                <a title="" href="/auth/passowrd/">
-                    <i class="icon icon-lock"></i> <span class="text">Change Password</span>
-                </a>
-            </li>
-            <li class="">
-                <a title="" href="lock_screen.html">
-                    <i class="icon icon-lock"></i> <span class="text">Lock Screen</span>
-                </a>
-            </li>
+						 {{--<li class="">--}}
+                {{--<a title="" href="/auth/passowrd/">--}}
+                    {{--<i class="icon icon-lock"></i> <span class="text">Change Password</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li class="">--}}
+                {{--<a title="" href="lock_screen.html">--}}
+                    {{--<i class="icon icon-lock"></i> <span class="text">Lock Screen</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
             <li class="">
                 <a title="" href="/logout/"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a>
             </li>
@@ -66,6 +66,7 @@
                     <li><a href="/reservation/reservations/">Reservations</a></li>
                 </ul>
             </li>
+            @role('admin')
             <li class="submenu">
                 <a href="#"><i class="icon-signal"></i> <span>Statistics</span></a>
                 <ul>
@@ -73,6 +74,7 @@
                     <li><a href="/reports/availability/">Available Resources</a></li>
                 </ul>
             </li>
+            @endrole
             @role('admin')
             <li><a href="/user/management/"><i class="icon-user"></i> <span>User Management</span></a></li>
             @endrole
