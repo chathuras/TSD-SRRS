@@ -20,7 +20,7 @@
 		<!--Footer-part-->
 
 		<div class="row-fluid">
-			<div id="footer" class="span12"> 2016 &copy; School Resource Reservation System </div>
+			<div id="footer" class="span12"> {{date('Y')}} &copy; School Resource Reservation System </div>
 		</div>
 
 		<!--end-Footer-part-->
