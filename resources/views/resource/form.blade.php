@@ -27,10 +27,10 @@
             <label class="control-label">Resource Image * </label>
             <div class="controls">
                 <img id="imgIcon" src="@if(!empty($resource->icon)) {{'/storage/category/' . $resource->icon }} @else {{'/img/question.png' }} @endif">
-                <input type="file" class="cHidden" name="iconFile" id="iInputIconFile" accept="image/*">
+                <input type="file" class="cHidden" name="iconFile" id="iInputIconFile" accept="image/*" >
                 <input type="text" class="cHidden" name="icon" id="iInputIcon" value="{{$resource->icon or ''}}"
                        required>
-                <input type="text" name="iconFileName" id="iInputIconFileName" required readonly>
+                <input type="text" name="iconFileName" id="iInputIconFileName" value="{{$resource->icon or ''}}" required readonly>
                 <button type="button" class="btn btn-success" id="iBtnUpload">Upload</button>
             </div>
         </div>

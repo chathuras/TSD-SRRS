@@ -36,35 +36,38 @@ $(document).ready(function () {
                 });
 
                 $("#resSave").click(function () {
-                    var reservation = {
-                        resource_id: resourceId,
-                        purpose: $('#iInputPurpose').val(),
-                        name: $('#iInputName').val(),
-                        address: $('#iInputAddress').val(),
-                        nic: $('#iInputNIC').val(),
-                        contact_number: $('#iInputContactNum').val(),
-                        email_address: $('#iInputEmail').val(),
-                        start: $('#iInputStartDate').data('timestamp'),
-                        end: $('#iInputEndDate').data('timestamp')
-                    };
+                    if ($('#iFormReservation').valid()) {
+                        var reservation = {
+                            resource_id: resourceId,
+                            purpose: $('#iInputPurpose').val(),
+                            name: $('#iInputName').val(),
+                            address: $('#iInputAddress').val(),
+                            nic: $('#iInputNIC').val(),
+                            contact_number: $('#iInputContactNum').val(),
+                            email_address: $('#iInputEmail').val(),
+                            start: $('#iInputStartDate').data('timestamp'),
+                            end: $('#iInputEndDate').data('timestamp')
+                        };
 
-                    // console.log(reservation);
-                    $.ajax({
-                        url: '/reservation/reservations/' + reservationId,
-                        type: 'PUT',
-                        data: reservation,
-                        success: function(putResponse) {
-                            // Do something with the result
-                            if (putResponse) {
-                                getReservations();
-                                $('#resCalendar').attr("class", "modal fade");
-                                $('#resCalendar').attr("aria-hidden", "true");
-                                $('#resCalendar').empty();
-                            } else {
-                                alert('Update failed. Pls try again later')
+                        // console.log(reservation);
+                        $.ajax({
+                            url: '/reservation/reservations/' + reservationId,
+                            type: 'PUT',
+                            data: reservation,
+                            success: function (putResponse) {
+                                // Do something with the result
+                                if (putResponse) {
+
+                                    getReservations();
+                                    $('#resCalendar').attr("class", "modal fade");
+                                    $('#resCalendar').attr("aria-hidden", "true");
+                                    $('#resCalendar').empty();
+                                } else {
+                                    alert('Update failed. Pls try again later')
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                     event.preventDefault();
                 });
 
