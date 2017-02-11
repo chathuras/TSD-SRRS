@@ -33,6 +33,7 @@
                         <div class="form-actions">
                             <div class="span12">
                                 <input id="btnReserveResourceDialog" data-id="{{$resource->id }}" type="button" value="Reserve" class="btn btn-success">
+                                <input id="btnCancelResourceDialog" type="button" value="Cancel" class="btn btn-warning">
                             </div>
                         </div>
                     </form>

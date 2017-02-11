@@ -101,10 +101,15 @@ $(document).ready(function () {
 
           $( "#btnReserveResourceDialog" ).click(function() {
               var id = $(this).data('id');
-              alert( "Handler for btnReserveResource .click() called. ID >> " + id);
               $('#resCalendar').attr("class", "modal fade");
               $('#resCalendar').attr("aria-hidden", "true");
               showReservationDialog(id);
+          });
+
+          $( "#btnCancelResourceDialog" ).click(function() {
+              $('#resCalendar').attr("class", "modal fade");
+              $('#resCalendar').attr("aria-hidden", "true");
+              $('#resCalendar').empty();
           });
           event.preventDefault();
       });
@@ -117,8 +122,18 @@ $(document).ready(function () {
           if (response) {
               $('#resCalendar').html(response);
 
+              $( "#btnCancelRes" ).click(function() {
+                  $('#resCalendar').attr("class", "modal fade");
+                  $('#resCalendar').attr("aria-hidden", "true");
+                  $('#resCalendar').empty();
+              });
+
               $( "#resSave" ).click(function() {
                   // alert( "Handler for .click() called." + $('#iInputName').val());
+
+                  // console.log($('#iInputStartDate').data('timestamp'));
+                  // console.log($('#iInputEndDate').data('timestamp'));
+
                   var reservation = {
                       resource_id: resourceId,
                       purpose: $('#iInputPurpose').val(),
@@ -127,8 +142,8 @@ $(document).ready(function () {
                       nic: $('#iInputNIC').val(),
                       contact_number: $('#iInputContactNum').val(),
                       email_address: $('#iInputEmail').val(),
-                      start:$('#iInputStartDate').val(),
-                      end:$('#iInputEndDate').val(),
+                      start:$('#iInputStartDate').data('timestamp'),
+                      end:$('#iInputEndDate').data('timestamp'),
                   };
 
                   // console.log(reservation);
@@ -140,6 +155,7 @@ $(document).ready(function () {
                       }
                       $('#resCalendar').attr("class", "modal fade");
                       $('#resCalendar').attr("aria-hidden", "true");
+                      $('#resCalendar').empty();
                   });
                   event.preventDefault();
               });
@@ -155,139 +171,33 @@ $(document).ready(function () {
 
               $('#calendar').fullCalendar({
                   header: {
-                      left: 'prev,next',
+                      left: 'prev,next today',
                       center: 'title',
-                      right: 'month,basicWeek,basicDay'
+                      right: 'month,agendaWeek,agendaDay,listWeek'
                   },
                   editable: true,
                   selectable: true,
                   selectOverlap: false,
-                  events: [
-                      {
-                          title: 'All day event',
-                          start: new Date(y, m, 1)
-                      },
-                      {
-                          title: 'Long event',
-                          start: new Date(y, m, 5),
-                          end: new Date(y, m, 8)
-                      },
-                      {
-                          id: 999,
-                          title: 'Repeating event',
-                          start: new Date(y, m, 2, 16, 0),
-                          end: new Date(y, m, 3, 18, 0),
-                          allDay: false
-                      },
-                      {
-                          id: 999,
-                          title: 'Repeating event',
-                          start: new Date(y, m, 9, 16, 0),
-                          end: new Date(y, m, 10, 18, 0),
-                          allDay: false
-                      },
-                      {
-                          title: 'Lunch',
-                          start: new Date(y, m, 14, 12, 0),
-                          end: new Date(y, m, 15, 14, 0),
-                          allDay: false
-                      },
-                      {
-                          title: 'Birthday PARTY',
-                          start: new Date(y, m, 18),
-                          end: new Date(y, m, 20),
-                          allDay: false
-                      },
-                      {
-                          title: 'Click for Google',
-                          start: new Date(y, m, 27),
-                          end: new Date(y, m, 29),
-                          url: 'http://www.google.com'
-                      }
-                  ]
+                  select: function(start, end, allDay) {
+                      $('#iInputStartDate').val(start);
+                      $('#iInputEndDate').val(start);
+
+                      // console.log(new Date(start).getTime());
+                      // console.log(new Date(end).getTime());
+
+                      $('#iInputStartDate').data('timestamp', new Date(start).getTime()/1000);
+                      $('#iInputEndDate').data('timestamp', new Date(end).getTime()/1000);
+                      // alert('START >> ' + new Date(start));
+                      /* $('#eventStart').datepicker("setDate", new Date(start));
+                       $('#eventEnd').datepicker("setDate", new Date(end));
+                       $('#calEventDialog') -->.dialog('open'); */
+                  },
+                  events:'/reservation/reservation_search?resource_id='+resourceId
               });
           }
       });
-    /*var dialogContent = '';
-    console.log('resourceId >> 1' + resourceId);
-    dialogContent += '<div class="modal-dialog" role="document">';
-    dialogContent += '<div class="modal-content">';
-    dialogContent += '<div class="modal-header">'
-    dialogContent += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
-    dialogContent += '<span aria-hidden="true">&times;</span>';
-    dialogContent += '</button>'
-    dialogContent += '<h4 class="modal-title" id="myModalLabel">Modal title</h4>';
-    dialogContent += '</div>';
-    dialogContent += '<div class="modal-body">';
-    dialogContent += '<div class="row-fluid">';
-    dialogContent += '<div class="span4">';
-    dialogContent += '<div class="widget-box">';
-    dialogContent += '<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>';
-    dialogContent += '<h5>Personal-info</h5>';
-    dialogContent += '</div>';
-    dialogContent += '<div class="widget-content nopadding">';
-    dialogContent += '<form action="#" method="get" class="form-horizontal" id="iFormReservation">';
-    dialogContent += '<input type="hidden" name="resource_id" value="' + resourceId + '">';
-    dialogContent += '<label class="control-label">Name :</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<input type="text" class="span11" placeholder="Name" id="iInputName" />';
-    dialogContent += '</div>';
-    dialogContent += '<label class="control-label">Address</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<textarea class="span11" ></textarea>';
-    dialogContent += '</div>';
-    dialogContent += '<label class="control-label">NIC number :</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<input type="text" class="span11" placeholder="NIC number" id="iInputNIC" />';
-    dialogContent += '</div>';
-    dialogContent += '<label class="control-label">Contact number :</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<input type="text" class="span11" placeholder="Contact number"  id="iInputContactNum" />';
-    dialogContent += '</div>';
-    dialogContent += '<label class="control-label">Email address :</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<input type="text" class="span11" placeholder="Email address"  id="iInputEmail" />';
-    dialogContent += '</div>';
-    dialogContent += '<label class="control-label">Reservation Start Date :</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<div class="input-append date datepicker">';
-    dialogContent += '<input type="text" data-date-format="mm-dd-yyyy" class="span9" id="iInputStartDate" >';
-    dialogContent += '<span class="add-on"><i class="icon-th"></i></span> </div>';
-    dialogContent += '</div>';
-    dialogContent += '<label class="control-label">Reservation End Date :</label>';
-    dialogContent += '<div class="controls">';
-    dialogContent += '<div class="input-append date datepicker">';
-    dialogContent += '<input type="text" data-date-format="mm-dd-yyyy" class="span9" id="iInputEndDate" >';
-    dialogContent += '<span class="add-on"><i class="icon-th"></i></span> </div>';
-    dialogContent += '</div>';
-    dialogContent += '<div class="form-actions">';
-    dialogContent += '<button type="button" class="btn btn-success" id="resSave">Save</button>';
-    dialogContent += '<button type="reset" class="btn btn-success">Cancel</button>';
-    dialogContent += '</div>';
-    dialogContent += '</form>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '<div class="span8">';
-    dialogContent += '<div class="widget-box widget-calendar">';
-    dialogContent += '<div class="widget-title"> <span class="icon"><i class="icon-calendar"></i></span>';
-    dialogContent += '<h5>Calendar</h5>';
-    dialogContent += '</div>';
-    dialogContent += '<div class="widget-content">';
-    dialogContent += '<div id="calendar"></div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';*/
-    /*dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';
-    dialogContent += '</div>';*/
-    console.log('resourceId >> 2' + resourceId);
     //$('#resCalendar').html(calendarContent);
     $('#resCalendar').attr("class", "modal fade in");
     $('#resCalendar').attr("aria-hidden", "false");
-
-
-
   };
 });

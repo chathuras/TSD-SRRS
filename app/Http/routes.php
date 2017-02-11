@@ -33,6 +33,8 @@ Route::get('reservation/category/{id}', 'ReservationController@category');
 Route::get('reservation/resources/calendar/{resource_id}', 'ReservationController@calendar');
 Route::get('reservation/resources/reservations/{reservation_id}', 'ReservationController@reservation');
 Route::get('reservation/resources/resource/{resource_id}', 'ReservationController@resource');
+//Route::get('reservation/reservation_search/', 'ReservationController@reservationSearch');
+Route::get('reservation/reservation_search', ['as' => 'reservationSearch', 'uses' => 'ReservationController@reservationSearch']);
 Route::resource('reservation', 'ReservationController');
 
 
