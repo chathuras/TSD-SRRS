@@ -33,23 +33,29 @@ Route::get('reservation/index', 'ReservationController@index');
 Route::get('reservation/resources/category_id/{category_id}',
   'ReservationController@resources');
 Route::get('reservation/category/{id}', 'ReservationController@category');
-Route::get('reservation/resources/calendar/{resource_id}', 'ReservationController@calendar');
-Route::get('reservation/resources/reservations/{reservation_id}', 'ReservationController@reservation');
-Route::get('reservation/resources/resource/{resource_id}', 'ReservationController@resource');
+Route::get('reservation/resources/calendar/{resource_id}',
+  'ReservationController@calendar');
+Route::get('reservation/resources/reservations/{reservation_id}',
+  'ReservationController@reservation');
+Route::get('reservation/resources/resource/{resource_id}',
+  'ReservationController@resource');
 //Route::get('reservation/reservation_search/', 'ReservationController@reservationSearch');
-Route::get('reservation/reservation_search', ['as' => 'reservationSearch', 'uses' => 'ReservationController@reservationSearch']);
+Route::get('reservation/reservation_search', [
+  'as' => 'reservationSearch',
+  'uses' => 'ReservationController@reservationSearch'
+]);
 Route::resource('reservation', 'ReservationController');
-
 
 //// Authentication Routes...
 //$this->get('login', 'Auth\AuthController@showLoginForm');
 //$this->post('login', 'Auth\AuthController@login');
 //$this->get('logout', 'Auth\AuthController@logout');
 //
-//// Registration Routes...
 
+// Registration Routes...
 Route::get('auth/register', 'Auth\AuthController@showRegistrationForm');
 Route::post('auth/register_user', 'Auth\AuthController@registerUser');
+Route::get('account/activate/{key}', 'Auth\AuthController@activate');
 
 //$this->get('register', 'Auth\AuthController@showRegistrationForm');
 //$this->post('register', 'Auth\AuthController@register');
@@ -75,3 +81,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 // Reports
 Route::get('reports/reservations', 'ReportsController@reservations');
+Route::get('reports/availability', 'ReportsController@availability');
+
+// User Management
+Route::get('user/management', 'HomeController@userManagement');

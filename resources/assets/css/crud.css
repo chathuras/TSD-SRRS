@@ -18,3 +18,7 @@ input.cHidden {
 .datepicker {
   z-index: 99999 !important;
 }
+
+#iDivRegister {
+  margin-left: 100px;
+}
