@@ -14,7 +14,7 @@
 								<li class="bg_ly"><a href="/reservation/categories/" class="anchorTxt"><i class="icon-check" style="font-size: 46px"></i> <small>Resources</small></a></li>
 								<li class="bg_lo"><a href="/reservation/reservations/" class="anchorTxt"><i class="icon-calendar" style="font-size: 46px"></i><small>Reservations</small></a></li>
 								<li class="bg_ls"><a href="/reports/index/" class="anchorTxt"><i class="icon-signal" style="font-size: 46px"></i><small>Statistics</small></a></li>
-								<li class="bg_lb"><a href="/users/index/" class="anchorTxt"><i class="icon-user" style="font-size: 46px"></i><small>User Management</small></a></li>
+								<li class="bg_lb"><a href="/user/management/" class="anchorTxt"><i class="icon-user" style="font-size: 46px"></i><small>User Management</small></a></li>
 							</ul>
 					</div>
 				</div>

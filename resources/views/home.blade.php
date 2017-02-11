@@ -70,11 +70,11 @@
                 <a href="#"><i class="icon-signal"></i> <span>Statistics</span></a>
                 <ul>
                     <li><a href="/reports/reservations/">Past Reservations</a></li>
-                    <li><a href="/reports/resources/">Available Resources</a></li>
+                    <li><a href="/reports/availability/">Available Resources</a></li>
                 </ul>
             </li>
             @role('admin')
-            <li><a href="/users/index/"><i class="icon-user"></i> <span>User Management</span></a></li>
+            <li><a href="/user/management/"><i class="icon-user"></i> <span>User Management</span></a></li>
             @endrole
         </ul>
     </div>

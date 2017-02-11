@@ -23,6 +23,6 @@ class ReportsController extends Controller
     }
 
     public function availability() {
-        return view('reports.resource.availability');
+        return view('reports.availability');
     }
 }
