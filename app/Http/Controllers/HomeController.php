@@ -63,4 +63,8 @@ class HomeController extends Controller
 //        return view('reservation.calendar', ['resource_id' => $resource_id]);
 //        return view('home.home', []);
     }
+
+    public function userManagement() {
+        return view('user.management');
+    }
 }

@@ -80,3 +80,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 // Reports
 Route::get('reports/reservations', 'ReportsController@reservations');
+Route::get('reports/availability', 'ReportsController@availability');
+
+// User Management
+Route::get('user/management', 'HomeController@userManagement');

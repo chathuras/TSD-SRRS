@@ -21,4 +21,8 @@ class ReportsController extends Controller
     public function reservations() {
         return view('reports.reservations');
     }
+
+    public function availability() {
+        return view('reports.resource.availability');
+    }
 }
