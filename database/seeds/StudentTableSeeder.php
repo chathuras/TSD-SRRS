@@ -15,35 +15,39 @@ class StudentTableSeeder extends Seeder
     {
         $faker = Factory::create();
 
+        Schema::disableForeignKeyConstraints();
         Student::truncate();
-//$faker->numberBetween(1, 10),
+        Schema::enableForeignKeyConstraints();
+
         $students = [
           [
-            'reg_id' => 's-99',
-            'pin'  => $faker->numberBetween(100, 1000),
+            'reg_id' => 's-100',
+            'pin' => $faker->numberBetween(100, 1000),
             'name' => $faker->name,
-            'date_of_birth' => gmdate('Y-m-d H:i:s'),
-            'address' => $faker->sentence(2),
+            'date_of_birth' => $faker->dateTimeThisCentury->format('Y-m-d H:i:s'),
+            'address' => $faker->address,
             'email_address' => 'student@srrs.app',
-            'contact_number' => '94777278818',
-            'class' => '11B',
+            'contact_number' => $faker->phoneNumber,
+            'class' => $faker->numberBetween(1,
+                13) . ucfirst($faker->lexify('?')),
             'created_at' => gmdate('Y-m-d H:i:s'),
             'updated_at' => gmdate('.Y-m-d H:i:s')
           ]
         ];
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             array_push($students, [
-              'student_id' => 's-' . $faker->numberBetween(100, 1000),
-							'pin'  => $faker->numberBetween(100, 1000),
-							'name' => $faker->name,
-							'date_of_birth' => gmdate('Y-m-d H:i:s'),
-							'address' => $faker->sentence(2),
-							'email_address' => 'student@srrs.app',
-							'contact_number' => '94773789094',
-							'class' => '11B',
-							'created_at' => gmdate('Y-m-d H:i:s'),
-							'updated_at' => gmdate('.Y-m-d H:i:s')
+              'reg_id' => 's-10' . $i,
+              'pin' => $faker->numberBetween(100, 1000),
+              'name' => $faker->name,
+              'date_of_birth' => gmdate('Y-m-d H:i:s'),
+              'address' => $faker->address,
+              'email_address' => $faker->email,
+              'contact_number' => $faker->phoneNumber,
+              'class' => $faker->numberBetween(1,
+                  13) . ucfirst($faker->lexify('?')),
+              'created_at' => gmdate('Y-m-d H:i:s'),
+              'updated_at' => gmdate('.Y-m-d H:i:s')
             ]);
         }
         Student::insert($students);

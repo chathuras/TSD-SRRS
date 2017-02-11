@@ -10,7 +10,7 @@
         </div>
         <div class="widget-content nopadding">
           <form action="/auth/register_user" method="POST" class="form-horizontal" id="iFormRegister">
-							{!! csrf_field() !!}
+							{{ csrf_field() }}
               <label class="control-label">Teacher/Student ID :</label>
               <div class="controls">
                 <input type="text"  placeholder="Teacher/Student ID" name="userId" id="iInputUserid"/>
@@ -21,15 +21,15 @@
               </div>
               <label class="control-label">Password :</label>
               <div class="controls">
-                <input type="password"   placeholder="Password"  name="passwd" id="iInputPasswd"/>
+                <input type="password"   placeholder="Password"  name="password" id="iInputPasswd"/>
               </div>
               <label class="control-label">Confirm Password :</label>
               <div class="controls">
-                <input type="password"   placeholder="Confirm Password" name="passwdConfirm"  id="iInputPasswdConfirm"/>
+                <input type="password"   placeholder="Confirm Password" name="password_confirmation" id="iInputPasswdConfirm"/>
               </div>
 							<div class="form-actions">
 								<button type="submit" class="btn btn-success" id='register'>Register</button>
-								<button type="reset" class="btn btn-success" id='reset'>Reset</button>
+								<button type="reset" class="btn btn-warning" id='reset'>Reset</button>
 							</div>
           </form>
         </div>

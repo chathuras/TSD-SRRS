@@ -7,6 +7,10 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    const STATUS_INACTIVE = 0;
+    const STATUS_PENDING = 1;
+    const STATUS_ACTIVE = 2;
+
     use HasRoles;
     /**
      * The attributes that are mass assignable.

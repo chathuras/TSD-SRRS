@@ -14,10 +14,11 @@
 Route::get('/', 'HomeController@index');
 
 // Authentication Routes...
-Route::get('auth/register', 'Auth\AuthController@register');
-Route::post('auth/register_user', 'Auth\AuthController@registerUser');
-Route::get('auth/password', 'Auth\AuthController@changePassword');
-Route::post('auth/change_password', 'Auth\AuthController@updatePassword');
+//Route::get('auth/register', 'Auth\AuthController@register');
+//Route::post('auth/register_user', 'Auth\AuthController@registerUser');
+//Route::get('auth/password', 'Auth\AuthController@changePassword');
+//Route::post('auth/change_password', 'Auth\AuthController@updatePassword');
+
 Route::auth();
 // Password Reset Routes...
 $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
@@ -38,9 +39,35 @@ Route::get('reservation/reservation_search', ['as' => 'reservationSearch', 'uses
 Route::resource('reservation', 'ReservationController');
 
 
+//// Authentication Routes...
+//$this->get('login', 'Auth\AuthController@showLoginForm');
+//$this->post('login', 'Auth\AuthController@login');
+//$this->get('logout', 'Auth\AuthController@logout');
+//
+//// Registration Routes...
+
+Route::get('auth/register', 'Auth\AuthController@showRegistrationForm');
+Route::post('auth/register_user', 'Auth\AuthController@registerUser');
+
+//$this->get('register', 'Auth\AuthController@showRegistrationForm');
+//$this->post('register', 'Auth\AuthController@register');
+//
+//// Password Reset Routes...
+//$this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+//$this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+//$this->post('password/reset', 'Auth\PasswordController@reset');
+//
+
 // Admin only routes
 Route::group(['middleware' => ['role:admin']], function () {
-    Route::resource('resource', 'ResourceController');
+
+    // Category
     Route::post('category/upload', 'CategoryController@upload');
     Route::resource('category', 'CategoryController');
+
+    // Resource
+    Route::resource('resource', 'ResourceController');
 });
+
+// Reports
+Route::get('reports/reservations', 'ReportsController@reservations');
