@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Resources;
-use App\Reservations;
+use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -26,9 +27,11 @@ class ReservationController extends Controller
      */
     public function index()
     {
+//        var_dump(Reservation::with('resource') ->get());
         return view('reservation.reservation-row',
           [
-            'reservations' => Reservations::all(['id', 'resource_id', 'name', 'address', 'email_address', 'start', 'end'])
+//            'reservations' => Reservations::all(['id', 'resource_id', 'purpose', 'name', 'address', 'email_address', 'start', 'end'])
+            'reservations' => Reservation::with('resources') ->get()
           ]);
     }
 
@@ -60,8 +63,10 @@ class ReservationController extends Controller
         $reservation -> nic_number = $request ->nic;
         $reservation -> conact_number = $request ->contact_number;
         $reservation -> email_address = $request ->email_address;
-        $reservation -> start = $request ->start;
-        $reservation -> end = $request ->end;
+        $reservation -> start = date_create_from_format('U', $request ->start); //Sat Feb 11 2017 07:00:00 GMT+0000
+        $reservation -> end = date_create_from_format('U', $request ->end);
+//        var_dump($reservation);
+//        die();
         //add valication code to ensure that there are no overlapping reservations
         return json_encode($reservation -> save());
     }
@@ -153,12 +158,8 @@ class ReservationController extends Controller
 
     public function reservation($reservation_id)
     {
-        //return $resource_id;
-//        return view('reservation.calendar', ['resource_id' => $resource_id]);
-        $reservation = Reservations::where('id', $reservation_id)->first();
-//        var_dump($reservation);
-//        die();
-        return view('reservation.calendar',
+        $reservation = Reservation::where('id', $reservation_id)->first();
+        return view('reservation.edit-calendar',
             ['reservation' => $reservation, 'resource_id' => $reservation -> resource_id]);
     }
 
@@ -166,5 +167,39 @@ class ReservationController extends Controller
     {
         return view('reservation.resource',
             ['resources' => Resources::where('id', $resource_id)->get()]);
+    }
+
+    public function reservationSearch(Request $request) {
+        $startO = date_create_from_format("Y-m-d", $request->input('start'));
+        $endO = date_create_from_format("Y-m-d", $request->input('end'));
+        $resource_id =  $request->input('resource_id');
+
+        // "2016-02-11 06:00:00.000000"
+        $start = $startO->format('Y-m-d H:i:s');
+        $end = $endO->format('Y-m-d H:i:s');
+
+        $reservations = DB::select("SELECT purpose, start, end FROM `reservations` WHERE resource_id =". $resource_id . " AND (`start` BETWEEN  '". $start . "' and '" .$end. "') and (`end` BETWEEN '". $start."' and '". $end ."');");
+//        var_dump($reservations);
+//        $reservations = DB::table('reservations')
+//            ->select('purpose','start', 'end')
+//            ->whereBetween('end', [$start, $end])
+//            ->whereBetween('start',[$start, $end])
+//            ->get();
+
+//        dd(DB::getQueryLog());
+//        var_dump(DB::getQueryLog());
+//        var_dump(Input::get('start'));
+        $res_array = array();
+        foreach ($reservations as $reservation) {
+//            var_dump($reservation->purpose);
+            array_push($res_array, [
+                'title' => $reservation->purpose,
+                'start' => $reservation->start,
+                'end' => $reservation->end,
+            ]);
+        }
+//        var_dump($res_array);
+//        die();
+        return json_encode($res_array);
     }
 }
