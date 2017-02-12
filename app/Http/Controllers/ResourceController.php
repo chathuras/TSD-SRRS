@@ -25,7 +25,8 @@ class ResourceController extends Controller
     {
         return view('resource.row',
           [
-            'resources' => Resources::with('category')->get()
+            'resources' => Resources::with('category', 'reservation')
+              ->get()
           ]);
     }
 
