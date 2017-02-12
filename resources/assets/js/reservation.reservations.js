@@ -94,13 +94,19 @@ $(document).ready(function () {
                         // $('#iInputStartDate').val(start);
                         // $('#iInputEndDate').val(start);
 
-                        $('#iInputStartDate').data('timestamp', new Date(start).getTime()/1000);
-                        $('#iInputEndDate').data('timestamp', new Date(end).getTime()/1000);
-                        /* $('#eventStart').datepicker("setDate", new Date(start));
-                         $('#eventEnd').datepicker("setDate", new Date(end));
-                         $('#calEventDialog') -->.dialog('open'); */
+                        var selectionStart = moment(start); var today = moment(); // passing moment nothing defaults to today
+                         if (selectionStart < today) { $('#calendar').fullCalendar('unselect'); } else {
+
+                             $('#iInputStartDate').data('timestamp', new Date(start).getTime() / 1000);
+                             $('#iInputEndDate').data('timestamp', new Date(end).getTime() / 1000);
+                             /* $('#eventStart').datepicker("setDate", new Date(start));
+                              $('#eventEnd').datepicker("setDate", new Date(end));
+                              $('#calEventDialog') -->.dialog('open'); */
+
+                         }
                     },
                     eventResize:function(event) {
+                        return false;
                         $('#iInputStartDate').val(event.start);
                         $('#iInputEndDate').val(event.end);
 
@@ -108,12 +114,15 @@ $(document).ready(function () {
                         $('#iInputEndDate').data('timestamp', event.end.toDate().getTime()/1000);
                     },
                     eventDrop: function(event) {
+                        return false;
                         $('#iInputStartDate').val(event.start);
                         $('#iInputEndDate').val(event.end);
 
                         $('#iInputStartDate').data('timestamp', event.start.toDate().getTime()/1000);
                         $('#iInputEndDate').data('timestamp', event.end.toDate().getTime()/1000);
                     },
+                    eventConstraint: { start: moment().format('YYYY-MM-DD'), end: '2100-01-01' // hard coded goodness unfortunately
+                        },
                     events:'/reservation/reservation_search?resource_id='+resourceId + '&reservation_id='+reservationId
                 });
             }

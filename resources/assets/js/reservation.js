@@ -196,18 +196,22 @@ $(document).ready(function () {
                   selectable: true,
                   selectOverlap: false,
                   select: function(start, end, allDay) {
+
+                    var selectionStart = moment(start); var today = moment(); // passing moment nothing defaults to today
+                    if (selectionStart < today) { $('#calendar').fullCalendar('unselect'); } else {
                       $('#iInputStartDate').val(start);
                       $('#iInputEndDate').val(end);
 
                       // console.log(new Date(start).getTime());
                       // console.log(new Date(end).getTime());
 
-                      $('#iInputStartDate').data('timestamp', new Date(start).getTime()/1000);
-                      $('#iInputEndDate').data('timestamp', new Date(end).getTime()/1000);
+                      $('#iInputStartDate').data('timestamp', new Date(start).getTime() / 1000);
+                      $('#iInputEndDate').data('timestamp', new Date(end).getTime() / 1000);
                       // alert('START >> ' + new Date(start));
                       /* $('#eventStart').datepicker("setDate", new Date(start));
                        $('#eventEnd').datepicker("setDate", new Date(end));
                        $('#calEventDialog') -->.dialog('open'); */
+                    }
                   },
                   events:'/reservation/reservation_search?resource_id='+resourceId
               });
